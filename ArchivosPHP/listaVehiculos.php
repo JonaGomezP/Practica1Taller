@@ -1,9 +1,7 @@
 <pre>
 <?php
 
-    $usu = $_GET['id_usuario'];
-    $veh = $_GET['id_vehiculo'];
-    $db_host = "10.192.240.8:81";
+    $db_host = "localhost";
     $db_name = "taller";
     $db_user = "admin";
     $db_pass = "Admin123";
@@ -14,12 +12,14 @@
         echo mysqli_connect_error();
         exit;
     }
+    //Usuario mete username
+    $unsername = "Rober";
+    
     
     echo "Connected successfully.";
  
     $sql = "SELECT *
-            FROM lista_servicios
-            ORDER BY date_entry;";
+            FROM lista_servicios";
  
     $results = mysqli_query($conn, $sql);
  
