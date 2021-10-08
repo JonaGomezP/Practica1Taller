@@ -1,3 +1,32 @@
+<?php
+require "../Comun/header.php";
+$db_host = "localhost";
+$db_name = "taller";
+$db_user = "admin";
+$db_pass = "Admin123";
+
+$conn = mysqli_connect($db_host, $db_user, $db_pass, $db_name);
+
+if (mysqli_connect_error()) {
+    echo mysqli_connect_error();
+    exit;
+} else {
+    echo "Connection successfully.";
+    $sql =  "SELECT nombre,apellido1,apellido2,fecha_alta, numero_vehiculos
+            FROM datos_usuario";
+
+
+    $resultados = mysqli_query($conn, $sql);
+
+    if ($resultados === false) {
+        echo mysqli_error($conn);
+    } else {
+        $users = mysqli_fetch_all($resultados, MYSQLI_ASSOC);
+    }
+}
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -9,86 +38,31 @@
 </head>
 
 <body>
+
     <pre>
-    <?php
-    $db_host = "localhost";
-    $db_name = "taller";
-    $db_user = "admin";
-    $db_pass = "Admin123";
-
-    $conn = mysqli_connect($db_host, $db_user, $db_pass, $db_name);
-
-    if (mysqli_connect_error()) {
-        echo mysqli_connect_error();
-        exit;
-    }
-
-    echo "Connected successfully.";
-
-
-    $sql =  "SELECT nombre,apellido1,apellido2,fecha_alta,numero_vehiculos
-            FROM datos_usuario
-            where id_usuario = 'u01'";
-
-
-    $results = mysqli_query($conn, $sql);
-
-    if ($results === false) {
-        echo mysqli_error($conn);
-    } else {
-        $users = mysqli_fetch_all($results, MYSQLI_ASSOC);
-
-        print_r($users);
-    }
-    ?>
-    <table>
+    <table border="2px" style="border-spacing:15px; border-collapse:separate">
         <thead>
             <tr>
                 <th>Nombre</th>
                 <th>Primer Apellido</th>
                 <th>Segundo Apellido</th>
                 <th>Fecha alta</th>
+                <th>Numero vehiculos</th>
             </tr>
         </thead>
         <tbody>
+        <?php foreach ($users as $registro) : ?> 
             <tr>
-                <td>
-                    <?php
-                    $nombre = "SELECT nombre 
-                    FROM datos_usuario 
-                    where id_usuario = 'u01'";
-                    
-                    $resultados = mysqli_query($conn, $nombre);
-
-                    if ($resultados === false) {
-                        echo mysqli_error($conn);
-                    } else {
-                        $usuario = mysqli_fetch_all($resultados, MYSQLI_ASSOC);
-
-                        print_r($usuario);
-                    }
-                    ?>
-                </td>
+	            <td><?php echo $registro['nombre'] ?></td>
+                <td><?php echo $registro['apellido1'] ?></td>
+                <td><?php echo $registro['apellido2'] ?></td>
+                <td><?php echo $registro['fecha_alta'] ?></td>
+                <td><?php echo $registro['numero_vehiculos'] ?></td>
             </tr>
+        <?php endforeach ?>
         </tbody>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     </table>
-
+    </pre>
 </body>
+
 </html>

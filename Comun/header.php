@@ -14,8 +14,10 @@
         header {
             position: relative;
             margin: auto;
+            width: 100%;
             height: 200px;
-            background: white;
+            background: black;
+            color: red;
         }
     </style>
 </head>
