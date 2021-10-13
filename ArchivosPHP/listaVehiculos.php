@@ -46,6 +46,29 @@
         print_r($users);
     }
     ?>
+
+<table border="2px" style="border-spacing:15px; border-collapse:separate">
+        <thead>
+            <tr>
+                <th>Nombre</th>
+                <th>Primer Apellido</th>
+                <th>Segundo Apellido</th>
+                <th>Fecha alta</th>
+                <th>Numero vehiculos</th>
+            </tr>
+        </thead>
+        <tbody>
+        <?php foreach ($users as $registro) : ?> 
+            <tr>
+	            <td><?php echo $registro['nombre'] ?></td>
+                <td><?php echo $registro['apellido1'] ?></td>
+                <td><?php echo $registro['apellido2'] ?></td>
+                <td><?php echo $registro['fecha_alta'] ?></td>
+                <td><?php echo $registro['numero_vehiculos'] ?></td>
+            </tr>
+        <?php endforeach ?>
+        </tbody>
+    </table>
 </pre>
 </body>
 
