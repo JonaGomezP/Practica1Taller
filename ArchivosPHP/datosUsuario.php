@@ -9,22 +9,24 @@ $db_pass = "Admin123";
 
 //Establecer conexión con BBDD
 $conn = mysqli_connect($db_host, $db_user, $db_pass, $db_name);
-
 if (mysqli_connect_error()) {
     echo mysqli_connect_error();
     exit;
-}else {
+} else {
     echo "Conexión existosa.";
     //Consulta a la tabla de usuarios
-    session_start();
-    $users = [];
-    if ($_SERVER["REQUEST_METHOD"] === "POST") {
-        $usu = $_POST['nombre'];
+    if ($_SERVER["REQUEST_METHOD"] == "POST") {
+        $usu = $_POST['username'];
         $pass = $_POST['pass'];
+        
+        
+        
+        
+
 
         $sqlusuarios =  "SELECT nombre,apellido1,apellido2,fecha_alta,numero_vehiculos
         FROM datos_usuario
-        where nombre = '$usu' AND pass = '$pass' ";
+        where nombre = '$usu' AND pass = '$pass'";
 
         $resultadosUsuarios = mysqli_query($conn, $sqlusuarios);
 
@@ -33,6 +35,7 @@ if (mysqli_connect_error()) {
         } else {
             $users = mysqli_fetch_all($resultadosUsuarios, MYSQLI_ASSOC);
         }
+        
     }
 
 
@@ -50,8 +53,8 @@ if (mysqli_connect_error()) {
         $tipo_motor = $_POST['tipo_motor'];
     
         $sql = "INSERT INTO lista_vehiculos (id_usuario,marca,modelo,matricula,combustible,tipo_motor) VALUES ($marca,$modelo,$matricula,$combustible,$tipo_motor)";
-    }*/
-    
+    }
+
 
     //Consulta a la tabla lista de vehículos
     $sqlVehiculos =  "SELECT marca,modelo,matricula,combustible, tipo_motor
@@ -66,6 +69,7 @@ if (mysqli_connect_error()) {
     } else {
         $coches = mysqli_fetch_all($resultadosVehiculos, MYSQLI_ASSOC);
     }
+    */
 }
 ?>
 

@@ -8,7 +8,7 @@
 </head>
 <body>
 <pre>
-    <form action="datosUsuarioPrueba.php" action="POST">
+    <form action="datosUsuarioPrueba.php" method="POST">
         <label for="username">Usuario</label>
         <input type="text" name="username" required>
         <label for="pass">Contraseña</label>
