@@ -8,12 +8,12 @@
 </head>
 <body>
 <pre>
-    <form action="datosUsuario.php" action="POST">
-        <label for="y¡username">Usuario</label>
+    <form action="datosUsuarioPrueba.php" action="POST">
+        <label for="username">Usuario</label>
         <input type="text" name="username" required>
         <label for="pass">Contraseña</label>
         <input type="password" name="pass">
-        <input type="submit" value="ENTRAR">
+        <input type="submit" value="ENTRAR" name="enviar">
     </form>
 </pre>
 </body>

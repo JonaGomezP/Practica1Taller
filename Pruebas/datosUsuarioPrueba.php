@@ -13,13 +13,13 @@ $conn = mysqli_connect($db_host, $db_user, $db_pass, $db_name);
 if (mysqli_connect_error()) {
     echo mysqli_connect_error();
     exit;
-}else {
+} else {
     echo "Conexión existosa.";
     //Consulta a la tabla de usuarios
     session_start();
     $users = [];
     if ($_SERVER["REQUEST_METHOD"] === "POST") {
-        $usu = $_POST['nombre'];
+        $usu = $_POST['username'];
         $pass = $_POST['pass'];
 
         $sqlusuarios =  "SELECT nombre,apellido1,apellido2,fecha_alta,numero_vehiculos
@@ -51,7 +51,7 @@ if (mysqli_connect_error()) {
     
         $sql = "INSERT INTO lista_vehiculos (id_usuario,marca,modelo,matricula,combustible,tipo_motor) VALUES ($marca,$modelo,$matricula,$combustible,$tipo_motor)";
     }*/
-    
+
 
     //Consulta a la tabla lista de vehículos
     $sqlVehiculos =  "SELECT marca,modelo,matricula,combustible, tipo_motor

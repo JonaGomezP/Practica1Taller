@@ -15,14 +15,13 @@
 
 <body>
     <pre>
-
-    <form action="">
-        <label for="marca">marca</label>
-        <input type="text" id="marca" placeholder="Marca">
-        <input type="text" id="modelo" placeholder="modelo">
-        <input type="text" id="matricula" maxlength="7" placeholder="matricula">
-        <input type="text" id="combustible" placeholder="combustible">
-        <input type="text" id="tipo_motor" placeholder="tipo de motor">
+    <form action="datosUsuario.php" method="POST">
+        <input type="text" name="marca" placeholder="Marca">
+        <input type="text" name="modelo" placeholder="modelo">
+        <input type="text" name="matricula" maxlength="7" placeholder="matricula">
+        <input type="text" name="combustible" placeholder="combustible">
+        <input type="text" name="tipo_motor" placeholder="tipo de motor">
+        <input type="submit" value="guardar">
     </form>
     </pre>
 
