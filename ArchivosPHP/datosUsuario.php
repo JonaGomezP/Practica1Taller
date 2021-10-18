@@ -28,10 +28,6 @@ if (mysqli_connect_error()) {
         FROM datos_usuario
         where nombre = '$usu' AND pass = '$pass'";
 
-        $sqlid = "SELECT id_usuario from lista_usuarios where nombre = '$usu' AND pass = '$pass'";
-        $resultadoID = mysqli_query($conn, $sqlid);
-        $id = mysqli_fetch_all($resultadoID, MYSQLI_ASSOC);
-
 
         $resultadosUsuarios = mysqli_query($conn, $sqlusuarios);
 
