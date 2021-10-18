@@ -54,22 +54,22 @@ if (mysqli_connect_error()) {
     
         $sql = "INSERT INTO lista_vehiculos (id_usuario,marca,modelo,matricula,combustible,tipo_motor) VALUES ($marca,$modelo,$matricula,$combustible,$tipo_motor)";
     }
-
+*/
 
     //Consulta a la tabla lista de vehículos
-    $sqlVehiculos =  "SELECT marca,modelo,matricula,combustible, tipo_motor
-            FROM lista_vehiculos as v
-            join datos_usuario as u
-            where v.id_usuario = u.id_usuario";
+    $sqlvehiculos =  "SELECT marca,modelo,matricula,combustible,tipo_motor
+        FROM lista_vehiculos as lv
+        left join datos_usuario as du
+        where lv.id_usuario = du.id_usuario";
 
-    $resultadosVehiculos = mysqli_query($conn, $sqlVehiculos);
+        $resultadosVehiculos = mysqli_query($conn, $sqlvehiculos);
 
-    if ($resultadosVehiculos === false) {
-        echo mysqli_error($conn);
-    } else {
-        $coches = mysqli_fetch_all($resultadosVehiculos, MYSQLI_ASSOC);
-    }
-    */
+        if ($resultadosVehiculos === false) {
+            echo mysqli_error($conn);
+        } else {
+            $coches = mysqli_fetch_all($resultadosVehiculos, MYSQLI_ASSOC);
+        }
+    
 }
 ?>
 
