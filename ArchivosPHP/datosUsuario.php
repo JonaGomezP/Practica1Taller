@@ -58,9 +58,8 @@ if (mysqli_connect_error()) {
 
     //Consulta a la tabla lista de vehículos
     $sqlVehiculos =  "SELECT marca,modelo,matricula,combustible, tipo_motor
-            FROM lista_vehiculos as v
-            join datos_usuario as u
-            where v.id_usuario = '$id";
+            FROM lista_vehiculos 
+            where (SELECT id_usuario from datos_usuario where nombre = '$usu' AND pass = '$pass')=id_usuario";
 
 
     $resultadosVehiculos = mysqli_query($conn, $sqlVehiculos);
@@ -155,7 +154,7 @@ if (mysqli_connect_error()) {
         </table>
     </div>
 
-    <a href="../ArchivosPHP/formularioVehiculo.php" target="blanc"><button style="cursor: pointer;">Añadir vehículo</button></a>
+    <a href="../ArchivosPHP/formularioVehiculo.php" target="_self"><button style="cursor: pointer;">Añadir vehículo</button></a>
 
 
 

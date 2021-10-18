@@ -16,7 +16,7 @@
 <body>
     <pre>
         <div style="background: white;">
-            <form action="datosUsuario.php" method="POST">
+            <form action="datosUsuario.php" method="POST" target="self">
                 <input type="text" name="marca" placeholder="Marca">
                 <input type="text" name="modelo" placeholder="modelo">
                 <input type="text" name="matricula" maxlength="7" placeholder="matricula">
