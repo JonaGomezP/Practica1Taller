@@ -9,15 +9,24 @@
 </head>
 
 <body>
-    <form action="datosUsuario.php" method="POST" style="background: rgba(0, 0, 0, 0.7);color:white">
-        <label for="username">Usuario</label>
-        <input type="text" name="username" required>
-        <label for="pass">Contraseña</label>
-        <input type="password" name="pass" required>
-        <input type="submit" value="ENTRAR" name="enviar">
-    </form>
+    <div>
+        <form action="datosUsuario.php" method="POST" style="background: rgba(0, 0, 0, 0.7);color:white">
+            <label for="username">Usuario</label>
+            <input type="text" name="username" required>
+            <label for="pass">Contraseña</label>
+            <input type="password" name="pass" required>
+            <input type="submit" value="ENTRAR" name="enviar">
+        </form>
+    </div>
+
     <?php
     require "../ArchivosCSS/header.html"
+    ?>
+    <?php
+    require "../ArchivosCSS/fondoLogin.html"
+    ?>
+    <?php
+    require "../ArchivosCSS/footer.html"
     ?>
 </body>
 

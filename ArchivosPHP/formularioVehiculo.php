@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <style>
-        form{
+        form {
             display: flex;
         }
     </style>
@@ -15,14 +15,17 @@
 
 <body>
     <pre>
-    <form action="datosUsuario.php" method="POST">
-        <input type="text" name="marca" placeholder="Marca">
-        <input type="text" name="modelo" placeholder="modelo">
-        <input type="text" name="matricula" maxlength="7" placeholder="matricula">
-        <input type="text" name="combustible" placeholder="combustible">
-        <input type="text" name="tipo_motor" placeholder="tipo de motor">
-        <input type="submit" value="guardar">
-    </form>
+        <div style="background: white;">
+            <form action="datosUsuario.php" method="POST">
+                <input type="text" name="marca" placeholder="Marca">
+                <input type="text" name="modelo" placeholder="modelo">
+                <input type="text" name="matricula" maxlength="7" placeholder="matricula">
+                <input type="text" name="combustible" placeholder="combustible">
+                <input type="text" name="tipo_motor" placeholder="tipo de motor">
+                <input type="submit" value="guardar">
+            </form>
+        </div>
+    
     </pre>
 
 </body>

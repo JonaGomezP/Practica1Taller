@@ -18,7 +18,27 @@
             border: none;
             margin: 0, 0;
             height: auto;
-            padding: 0;
+        }
+        
+        .fondo {
+            background-image: url("../ArchivosCSS/auto-g7fd6e3727_1920.jpg");
+            padding: 24.1rem 10rem;
+            text-align: center;
+            background-position: center center;
+            background-size: cover;
+            background-repeat: no-repeat;
+            position: relative;
+            z-index: 0;
+        }
+        
+        .fondo:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background-color: rgba(36, 35, 35, 0.8);
         }
         
         .claseheader {
@@ -47,12 +67,31 @@
             text-decoration: cursive;
             box-shadow: 10px 10px 10px 10px black;
         }
+        
+        footer {
+            background: rgba(0, 0, 0, 0.6);
+            position: absolute;
+            bottom: 0;
+            width: 98.7%;
+            margin: 0;
+            margin-bottom: 0;
+            color: rgb(255, 255, 255);
+            text-align: center;
+            padding: 1rem;
+        }
     </style>
 </head>
 
 <body>
     <div class="claseheader">
         <header class="textoheader"><em>Parrapu Motor</em></header>
+    </div>
+
+    <div class="fondo"> </div>
+
+
+    <div>
+        <footer><em>Parrapu Motor© Todos los derechos reservados </em< /footer>
     </div>
 
 </body>

@@ -18,10 +18,10 @@ if (mysqli_connect_error()) {
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $usu = $_POST['username'];
         $pass = $_POST['pass'];
-        
-        
-        
-        
+
+
+
+
 
 
         $sqlusuarios =  "SELECT nombre,apellido1,apellido2,fecha_alta,numero_vehiculos
@@ -35,7 +35,6 @@ if (mysqli_connect_error()) {
         } else {
             $users = mysqli_fetch_all($resultadosUsuarios, MYSQLI_ASSOC);
         }
-        
     }
 
 
@@ -62,14 +61,13 @@ if (mysqli_connect_error()) {
         left join datos_usuario as du
         where lv.id_usuario = du.id_usuario";
 
-        $resultadosVehiculos = mysqli_query($conn, $sqlvehiculos);
+    $resultadosVehiculos = mysqli_query($conn, $sqlvehiculos);
 
-        if ($resultadosVehiculos === false) {
-            echo mysqli_error($conn);
-        } else {
-            $coches = mysqli_fetch_all($resultadosVehiculos, MYSQLI_ASSOC);
-        }
-    
+    if ($resultadosVehiculos === false) {
+        echo mysqli_error($conn);
+    } else {
+        $coches = mysqli_fetch_all($resultadosVehiculos, MYSQLI_ASSOC);
+    }
 }
 ?>
 
@@ -93,7 +91,6 @@ if (mysqli_connect_error()) {
 </head>
 
 <body>
-
     <pre>
     <table border="2px" style="border-spacing:15px; border-collapse:separate">
     <caption>Datos del usuario</caption>
