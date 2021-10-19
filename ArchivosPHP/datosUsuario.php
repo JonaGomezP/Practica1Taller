@@ -2,7 +2,7 @@
 
 //Datos de conexión a BBDD
 $db_host = "localhost";
-$db_name = "taller";
+$db_name = "tallerServidores";
 $db_user = "admin";
 $db_pass = "Admin123";
 
@@ -15,14 +15,9 @@ if (mysqli_connect_error()) {
 } else {
     echo "Conexión existosa.";
     //Consulta a la tabla de usuarios
-    if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $usu = $_POST['username'];
         $pass = $_POST['pass'];
-
-
-
-
-
+        $id = "SELECT id_usuario FROM datos_usuario where nombre = $usu AND pass = $pass";
 
         $sqlusuarios =  "SELECT nombre,apellido1,apellido2,fecha_alta,numero_vehiculos
         FROM datos_usuario
@@ -36,7 +31,9 @@ if (mysqli_connect_error()) {
         } else {
             $users = mysqli_fetch_all($resultadosUsuarios, MYSQLI_ASSOC);
         }
-    }
+    
+    $username = $usu;
+    $pwd = $pass;
 
 
     //Comprobar si vengo de GET ()
@@ -45,21 +42,33 @@ if (mysqli_connect_error()) {
 
 
     //Comprobar si viene con método post y que haga INSERT (botón guardar)
-    /*if($_SERVER["REQUESET_METHOD"] == "POST"){
-        $marca = $_POST['marca'];
-        $modelo = $_POST['modelo'];
-        $matricula = $_POST['matricula'];
-        $combustible = $_POST['combustible'];
-        $tipo_motor = $_POST['tipo_motor'];
     
-        $sql = "INSERT INTO lista_vehiculos (id_usuario,marca,modelo,matricula,combustible,tipo_motor) VALUES ($marca,$modelo,$matricula,$combustible,$tipo_motor)";
-    }
-*/
+        if ($_SERVER["REQUEST_METHOD"] == "POST") {
+            $marca = $_POST['marca'];
+            $modelo = $_POST['modelo'];
+            $matricula = $_POST['matricula'];
+            $combustible = $_POST['combustible'];
+            $tipo_motor = $_POST['tipo_motor'];
+
+            $sql = "INSERT INTO lista_vehiculos (id_usuario,marca,modelo,matricula,combustible,tipo_motor) VALUES ('$id','$marca','$modelo','$matricula','$combustible','$tipo_motor')";
+
+            $resV = mysqli_query($conn, $sql);
+
+            if ($resV === false) {
+                echo mysqli_error($conn);
+            } else {
+                $users = mysqli_fetch_all($resV, MYSQLI_ASSOC);
+            }
+        }
+    
+
+
+
 
     //Consulta a la tabla lista de vehículos
     $sqlVehiculos =  "SELECT marca,modelo,matricula,combustible, tipo_motor
             FROM lista_vehiculos 
-            where (SELECT id_usuario from datos_usuario where nombre = '$usu' AND pass = '$pass')=id_usuario";
+            where (SELECT id_usuario from datos_usuario where nombre = '$username' AND pass = '$pwd')=id_usuario";
 
 
     $resultadosVehiculos = mysqli_query($conn, $sqlVehiculos);
@@ -85,6 +94,10 @@ if (mysqli_connect_error()) {
             margin: 0;
         }
 
+        body {
+            background: white;
+        }
+
         button {
             cursor: pointer;
         }
@@ -99,12 +112,11 @@ if (mysqli_connect_error()) {
 
 <body style="position:relative;margin:0;-zindex:0">
 
-    <?php
-    require "../ArchivosCSS/header.html"
-    ?>
+
+
 
     <div class="divFormulario">
-        <table border="2px" style="border-spacing:5px; border-collapse:separate;color:white;">
+        <table border="2px" style="border-spacing:5px; border-collapse:separate;color:black;">
             <caption style="caption-side: top;">Datos del usuario</caption>
             <thead>
                 <tr>
@@ -129,7 +141,7 @@ if (mysqli_connect_error()) {
         </table>
     </div>
     <div class="divFormulario">
-        <table border="2px" style="border-spacing:15px; border-collapse:separate;color:white;">
+        <table border="2px" style="border-spacing:15px; border-collapse:separate;color:black;">
             <caption>Lista de vehículos</caption>
             <thead>
                 <tr>
@@ -153,9 +165,19 @@ if (mysqli_connect_error()) {
             </tbody>
         </table>
     </div>
-
-    <a href="../ArchivosPHP/formularioVehiculo.php" target="_self"><button style="cursor: pointer;">Añadir vehículo</button></a>
-
+    <br>
+    <div style="background: white;">
+        <form action="datosUsuario.php" method="POST" target="self">
+            <input type="hidden" name="username" placeholder="Marca" value="$usu">
+            <input type="hidden" name="pass" placeholder="Marca" value="$pass" >
+            <input type="text" name="marca" placeholder="Marca">
+            <input type="text" name="modelo" placeholder="modelo">
+            <input type="text" name="matricula" maxlength="7" placeholder="matricula">
+            <input type="text" name="combustible" placeholder="combustible">
+            <input type="text" name="tipo_motor" placeholder="tipo de motor">
+            <input type="submit" value="guardar">
+        </form>
+    </div>
 
 
 </body>
