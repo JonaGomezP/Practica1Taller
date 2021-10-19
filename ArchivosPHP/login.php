@@ -15,7 +15,7 @@
             <input type="text" name="username" required>
             <label for="pass">Contraseña</label>
             <input type="password" name="pass" required>
-            <input type="submit" value="ENTRAR" name="enviar">
+            <input type="submit" value="ENTRAR" name="enviar" onclick="mostrarUsuarios()">
         </form>
     </div>
 

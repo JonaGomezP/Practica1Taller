@@ -8,49 +8,37 @@ $db_pass = "Admin123";
 
 
 //Establecer conexión con BBDD
-$conn = mysqli_connect($db_host, $db_user, $db_pass, $db_name);
-if (mysqli_connect_error()) {
-    echo mysqli_connect_error();
-    exit;
-} else {
+
+if(include 'Conexion.php'){
     echo "Conexión existosa.";
     //Consulta a la tabla de usuarios
-        $usu = $_POST['username'];
-        $pass = $_POST['pass'];
-        $id = "SELECT id_usuario FROM datos_usuario where nombre = $usu AND pass = $pass";
-
-        $sqlusuarios =  "SELECT nombre,apellido1,apellido2,fecha_alta,numero_vehiculos
-        FROM datos_usuario
-        where nombre = '$usu' AND pass = '$pass'";
-
-
-        $resultadosUsuarios = mysqli_query($conn, $sqlusuarios);
-
-        if ($resultadosUsuarios === false) {
-            echo mysqli_error($conn);
-        } else {
-            $users = mysqli_fetch_all($resultadosUsuarios, MYSQLI_ASSOC);
-        }
+    $usu = $_POST['username'];
+    $pass = $_POST['pass'];
     
+    include ('listaUsuarios.php');
+    include ('listaVehiculos.php');
+
+
     $username = $usu;
     $pwd = $pass;
-
-
-    //Comprobar si vengo de GET ()
 
 
 
 
     //Comprobar si viene con método post y que haga INSERT (botón guardar)
-    
+    function insertarVehiculo(){
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
+            include 'Conexion.php';
+            $id = "SELECT id_usuario FROM datos_usuario where nombre = $usu AND pass = $pass";
             $marca = $_POST['marca'];
             $modelo = $_POST['modelo'];
             $matricula = $_POST['matricula'];
             $combustible = $_POST['combustible'];
             $tipo_motor = $_POST['tipo_motor'];
+            $usu = $_POST['username'];
+            $pass = $_POST['pass'];
 
-            $sql = "INSERT INTO lista_vehiculos (id_usuario,marca,modelo,matricula,combustible,tipo_motor) VALUES ('$id','$marca','$modelo','$matricula','$combustible','$tipo_motor')";
+            $insertar = $conn -> query("INSERT INTO lista_vehiculos (id_usuario,marca,modelo,matricula,combustible,tipo_motor) VALUES ('$id','$marca','$modelo','$matricula','$combustible','$tipo_motor')");
 
             $resV = mysqli_query($conn, $sql);
 
@@ -60,24 +48,15 @@ if (mysqli_connect_error()) {
                 $users = mysqli_fetch_all($resV, MYSQLI_ASSOC);
             }
         }
-    
+    }
+
+
 
 
 
 
     //Consulta a la tabla lista de vehículos
-    $sqlVehiculos =  "SELECT marca,modelo,matricula,combustible, tipo_motor
-            FROM lista_vehiculos 
-            where (SELECT id_usuario from datos_usuario where nombre = '$username' AND pass = '$pwd')=id_usuario";
 
-
-    $resultadosVehiculos = mysqli_query($conn, $sqlVehiculos);
-
-    if ($resultadosVehiculos === false) {
-        echo mysqli_error($conn);
-    } else {
-        $coches = mysqli_fetch_all($resultadosVehiculos, MYSQLI_ASSOC);
-    }
 }
 ?>
 
@@ -106,7 +85,6 @@ if (mysqli_connect_error()) {
             caption-side: top;
         }
 
-        .divFormulario {}
     </style>
 </head>
 
@@ -168,14 +146,14 @@ if (mysqli_connect_error()) {
     <br>
     <div style="background: white;">
         <form action="datosUsuario.php" method="POST" target="self">
-            <input type="hidden" name="username" placeholder="Marca" value="$usu">
-            <input type="hidden" name="pass" placeholder="Marca" value="$pass" >
+            <input type="hidden" name="username" value="$usu">
+            <input type="hidden" name="pass" value="$pass">
             <input type="text" name="marca" placeholder="Marca">
             <input type="text" name="modelo" placeholder="modelo">
             <input type="text" name="matricula" maxlength="7" placeholder="matricula">
             <input type="text" name="combustible" placeholder="combustible">
             <input type="text" name="tipo_motor" placeholder="tipo de motor">
-            <input type="submit" value="guardar">
+            <input type="submit" value="guardar" onclick="insertarVehiculo()">
         </form>
     </div>
 
