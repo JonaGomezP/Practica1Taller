@@ -7,7 +7,8 @@ where (SELECT id_usuario from datos_usuario where nombre = '$usu' AND pass = '$p
 $resultadosVehiculos = mysqli_query($conn, $sqlVehiculos);
 
 if ($resultadosVehiculos === false) {
-echo mysqli_error($conn);
+    echo mysqli_error($conn);
 } else {
-$coches = mysqli_fetch_all($resultadosVehiculos, MYSQLI_ASSOC);
+        $coches = mysqli_fetch_all($resultadosVehiculos, MYSQLI_ASSOC);
 }
+?>
