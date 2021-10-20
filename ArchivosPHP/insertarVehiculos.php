@@ -18,6 +18,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if ($sql == false) {
         echo mysqli_error($conn);
     } else {
-        $coches = mysqli_fetch_all($sql, MYSQLI_ASSOC);
+        try{
+            $coches = mysqli_fetch_all($sql, MYSQLI_ASSOC);
+            mysqli_free_result($sql);
+        } catch (Exception $e){
+            echo ($e->getMessage());
+        }
+
+        
+        
+
     }
 }
