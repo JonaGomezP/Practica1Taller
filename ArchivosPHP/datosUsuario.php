@@ -1,75 +1,91 @@
 <?php
- 
-    include ('Conexion.php');
- 
-    if (mysqli_connect_error()) {
-        echo mysqli_connect_error();
-        exit;
-    } else{
-        if ($_SERVER["REQUEST_METHOD"] == "POST") {
+
+include('Conexion.php');
+
+if (mysqli_connect_error()) {
+    echo mysqli_connect_error();
+    exit;
+} else {
+    if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $usu = $_POST['username'];
         $pass = $_POST['pass'];
 
+        //Recuperar ID del usuario
+        $id =  "SELECT id_usuario
+        FROM datos_usuario 
+        where nombre = '$usu' AND pass = '$pass'";
 
+
+        $resultadoID = mysqli_query($conn, $id);
+
+        if ($resultadoID === false) {
+            echo mysqli_error($conn);
+        } else {
+            $resID = mysqli_fetch_all($resultadoID, MYSQLI_ASSOC);
+        }
+
+        $idVehiculo = $resID[0];
+        print_r($resID);
         //--------------------------------------------------------------------------
         //Consulta de usuarios (llama archivo consultaUsuarios.php)
 
-        include ('consultaUsuarios.php');
+        include('consultaUsuarios.php');
 
         //--------------------------------------------------------------------------
         //Consulta de vehiculos (llama archivo consultaVehiculos.php)
 
-        include ('consultaVehiculos.php');
+        include('consultaVehiculos.php');
+    } else {
+        echo '<p>Por favor, complete el <a href="login.html">formulario</a></p>';
+    }
+
+
+    //Comprobar si viene con método post y que haga INSERT (botón guardar)- -------------------------------------------------------------
+    function guardar()
+    {
+
+        //Llamamos al archivo de la conexión de l a BBDD (conexion.php)
+        include('Conexion.php');
+
+        //if ($_SERVER["REQUEST_METHOD"] == "POST") {
+        //$id = "SELECT id_usuario FROM datos_usuario where nombre = $usu AND pass = $pass";
+        $marca = $_POST['marca'];
+        $modelo = $_POST['modelo'];
+        $matricula = $_POST['matricula'];
+        $combustible = $_POST['combustible'];
+        $tipo_motor = $_POST['tipo_motor'];
+        $usu = $_POST['username'];
+        $pass = $_POST['pass'];
+        $id = $_POST['id_usuario'];
+        print_r($usu);
+
+        $sqlV = $conn->query("INSERT INTO lista_vehiculos (marca,modelo,matricula,combustible,tipo_motor) VALUES ('$marca','$modelo','$matricula','$combustible','$tipo_motor')");
+
+        $resV = mysqli_query($conn, $sqlV);
+
+        if ($resV === false) {
+            echo mysqli_error($conn);
         } else {
-            echo '<p>Por favor, complete el <a href="login.html">formulario</a></p>';
+            $coches = mysqli_fetch_all($resV, MYSQLI_ASSOC);
+            print_r($coches);
         }
 
-
-        //Comprobar si viene con método post y que haga INSERT (botón guardar)- -------------------------------------------------------------
-        function guardar(){
-
-            //Llamamos al archivo de la conexión de l a BBDD (conexion.php)
-            include ('Conexion.php');
-
-            //if ($_SERVER["REQUEST_METHOD"] == "POST") {
-                //$id = "SELECT id_usuario FROM datos_usuario where nombre = $usu AND pass = $pass";
-                $marca = $_POST['marca'];
-                $modelo = $_POST['modelo'];
-                $matricula = $_POST['matricula'];
-                $combustible = $_POST['combustible'];
-                $tipo_motor = $_POST['tipo_motor'];
-                $usu = $_POST['username'];
-                $pass = $_POST['pass'];
-                $id=$_POST['id_usuario'];
-                print_r($usu);
-
-                $sqlV= $conn -> query("INSERT INTO lista_vehiculos (marca,modelo,matricula,combustible,tipo_motor) VALUES ('$marca','$modelo','$matricula','$combustible','$tipo_motor')");
-
-                $resV = mysqli_query($conn, $sqlV);
-
-                if ($resV === false) {
-                    echo mysqli_error($conn);
-                } else {
-                    $coches = mysqli_fetch_all($resV, MYSQLI_ASSOC);
-                    print_r($coches);
-                }
-                
-            //}
-        }
-            
-        
+        //}
+    }
 
 
 
 
 
 
-        //Consulta a la tabla lista de vehículos
 
-        }
-    ?>
-    
-       
+
+    //Consulta a la tabla lista de vehículos
+
+}
+?>
+
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -95,7 +111,6 @@
         caption {
             caption-side: top;
         }
-
     </style>
 </head>
 
@@ -157,8 +172,7 @@
     <br>
     <div style="background: white;">
         <form action="insertarVehiculos.php" method="POST" target="self">
-            <input type="hidden" name="username" value="$usu">
-            <input type="hidden" name="pass" value="$pass">
+            <input type="hidden" name="id_vehiculo" value="$idVehiculo">
             <input type="text" name="marca" placeholder="Marca">
             <input type="text" name="modelo" placeholder="modelo">
             <input type="text" name="matricula" maxlength="7" placeholder="matricula">
@@ -173,10 +187,3 @@
 </body>
 
 </html>
-    
-    
- 
-    
-
-
-        
