@@ -25,7 +25,6 @@ if (mysqli_connect_error()) {
         }
 
         $idVehiculo = $resID[0];
-        print_r($resID);
         //--------------------------------------------------------------------------
         //Consulta de usuarios (llama archivo consultaUsuarios.php)
 
@@ -41,42 +40,6 @@ if (mysqli_connect_error()) {
 
 
     //Comprobar si viene con método post y que haga INSERT (botón guardar)- -------------------------------------------------------------
-    function guardar()
-    {
-
-        //Llamamos al archivo de la conexión de l a BBDD (conexion.php)
-        include('Conexion.php');
-
-        //if ($_SERVER["REQUEST_METHOD"] == "POST") {
-        //$id = "SELECT id_usuario FROM datos_usuario where nombre = $usu AND pass = $pass";
-        $marca = $_POST['marca'];
-        $modelo = $_POST['modelo'];
-        $matricula = $_POST['matricula'];
-        $combustible = $_POST['combustible'];
-        $tipo_motor = $_POST['tipo_motor'];
-        $usu = $_POST['username'];
-        $pass = $_POST['pass'];
-        $id = $_POST['id_usuario'];
-        print_r($usu);
-
-        $sqlV = $conn->query("INSERT INTO lista_vehiculos (marca,modelo,matricula,combustible,tipo_motor) VALUES ('$marca','$modelo','$matricula','$combustible','$tipo_motor')");
-
-        $resV = mysqli_query($conn, $sqlV);
-
-        if ($resV === false) {
-            echo mysqli_error($conn);
-        } else {
-            $coches = mysqli_fetch_all($resV, MYSQLI_ASSOC);
-            print_r($coches);
-        }
-
-        //}
-    }
-
-
-
-
-
 
 
 
@@ -172,7 +135,8 @@ if (mysqli_connect_error()) {
     <br>
     <div style="background: white;">
         <form action="insertarVehiculos.php" method="POST" target="self">
-            <input type="hidden" name="id_vehiculo" value="$idVehiculo">
+            <input type="hidden" name="username" value="<?php echo $usu?>">
+            <input type="hidden" name="pass" value="<?php echo $pass?>">
             <input type="text" name="marca" placeholder="Marca">
             <input type="text" name="modelo" placeholder="modelo">
             <input type="text" name="matricula" maxlength="7" placeholder="matricula">
