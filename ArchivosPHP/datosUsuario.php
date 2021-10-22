@@ -24,7 +24,10 @@ if (mysqli_connect_error()) {
             $resID = mysqli_fetch_all($resultadoID, MYSQLI_ASSOC);
         }
 
-        $idVehiculo = $resID[0];
+        $id_usu = $resID[0]['id_usuario'];
+        echo ($id_usu);
+
+        
         //--------------------------------------------------------------------------
         //Consulta de usuarios (llama archivo consultaUsuarios.php)
 
@@ -135,6 +138,7 @@ if (mysqli_connect_error()) {
     <br>
     <div style="background: white;">
         <form action="insertarVehiculos.php" method="POST" target="self">
+            <input type="hidden" name="id_usuario" value="<?php echo $id_usu ?>">
             <input type="hidden" name="username" value="<?php echo $usu?>">
             <input type="hidden" name="pass" value="<?php echo $pass?>">
             <input type="text" name="marca" placeholder="Marca">
