@@ -1,6 +1,6 @@
 <?php
 
-include('Conexion.php');
+include('conexion.php');
 
 if (mysqli_connect_error()) {
     echo mysqli_connect_error();
@@ -10,24 +10,6 @@ if (mysqli_connect_error()) {
         $usu = $_POST['username'];
         $pass = $_POST['pass'];
 
-        //Recuperar ID del usuario
-        $id =  "SELECT id_usuario
-        FROM datos_usuario 
-        where nombre = '$usu' AND pass = '$pass'";
-
-
-        $resultadoID = mysqli_query($conn, $id);
-
-        if ($resultadoID === false) {
-            echo mysqli_error($conn);
-        } else {
-            $resID = mysqli_fetch_all($resultadoID, MYSQLI_ASSOC);
-        }
-
-        $id_usu = $resID[0]['id_usuario'];
-        echo ($id_usu);
-
-        
         //--------------------------------------------------------------------------
         //Consulta de usuarios (llama archivo consultaUsuarios.php)
 
@@ -46,7 +28,7 @@ if (mysqli_connect_error()) {
 
 
 
-    //Consulta a la tabla lista de vehículos
+    //Llamar al 
 
 }
 ?>
@@ -68,6 +50,8 @@ if (mysqli_connect_error()) {
 
         body {
             background: white;
+            padding-left: 20px;
+            padding-top: 20px;
         }
 
         button {
@@ -76,6 +60,11 @@ if (mysqli_connect_error()) {
 
         caption {
             caption-side: top;
+        }
+
+        #tabla_lista_servicios {
+            position: relative;
+            margin-top: 10px;
         }
     </style>
 </head>
@@ -105,6 +94,7 @@ if (mysqli_connect_error()) {
                         <td><?php echo $registro['apellido2'] ?></td>
                         <td><?php echo $registro['fecha_alta'] ?></td>
                         <td><?php echo $registro['numero_vehiculos'] ?></td>
+                        
                     </tr>
                 <?php endforeach ?>
             </tbody>
@@ -130,6 +120,10 @@ if (mysqli_connect_error()) {
                         <td><?php echo $registro['matricula'] ?></td>
                         <td><?php echo $registro['combustible'] ?></td>
                         <td><?php echo $registro['tipo_motor'] ?></td>
+                        <td ><form action="listaServicios.php" method="POST">
+                            <input type="hidden" name="id_vehiculo" value="<?php echo $registro['id_vehiculo'] ?>">
+                            <input type="submit" value="Consultar lista de servicios">
+                        </form></td>
                     </tr>
                 <?php endforeach ?>
             </tbody>
@@ -137,20 +131,18 @@ if (mysqli_connect_error()) {
     </div>
     <br>
     <div style="background: white;">
-        <form action="insertarVehiculos.php" method="POST" target="self">
+        <form action="insertarVehiculos.php" method="POST" target="_self">
             <input type="hidden" name="id_usuario" value="<?php echo $id_usu ?>">
-            <input type="hidden" name="username" value="<?php echo $usu?>">
-            <input type="hidden" name="pass" value="<?php echo $pass?>">
+            <input type="hidden" name="username" value="<?php echo $usu ?>">
+            <input type="hidden" name="pass" value="<?php echo $pass ?>">
             <input type="text" name="marca" placeholder="Marca">
             <input type="text" name="modelo" placeholder="modelo">
             <input type="text" name="matricula" maxlength="7" placeholder="matricula">
             <input type="text" name="combustible" placeholder="combustible">
             <input type="text" name="tipo_motor" placeholder="tipo de motor">
             <input type="submit" value="guardar">
-            <!-- onclick="insertarVehiculo() -->
         </form>
     </div>
-
 
 </body>
 
