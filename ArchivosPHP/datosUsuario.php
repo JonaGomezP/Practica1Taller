@@ -1,3 +1,4 @@
+
 <?php
 
 //Datos de conexión a BBDD
@@ -8,6 +9,8 @@ $db_pass = "Admin123";
 
 
 //Establecer conexión con BBDD
+
+
 
 if(include 'Conexion.php'){
     echo "Conexión existosa.";
@@ -59,6 +62,9 @@ if(include 'Conexion.php'){
 
 }
 ?>
+<?php
+    require "../ArchivosCSS/header.html"
+    ?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -74,7 +80,10 @@ if(include 'Conexion.php'){
         }
 
         body {
-            background: white;
+            background: rgb(150,0,0);
+            background: -moz-linear-gradient(90deg, rgba(150,0,0,1) 0%, rgba(45,1,1,1) 0%, rgba(150,0,0,1) 67%, rgba(101,1,1,1) 93%);
+            background: -webkit-linear-gradient(90deg, rgba(150,0,0,1) 0%, rgba(45,1,1,1) 0%, rgba(150,0,0,1) 67%, rgba(101,1,1,1) 93%);
+            background: linear-gradient(90deg, rgba(150,0,0,1) 0%, rgba(45,1,1,1) 0%, rgba(150,0,0,1) 67%, rgba(101,1,1,1) 93%);
         }
 
         button {
@@ -85,69 +94,84 @@ if(include 'Conexion.php'){
             caption-side: top;
         }
 
+        .divFormulario{
+            display: flex;
+        align-items: center;
+        justify-content: center;   
+        border-radius: 2px;
+        }
+        .tabla{
+            background:black;
+            border-color: black;
+            color: black;
+        }
+        .tdcolor{
+            background-color:rgba(255,255,255,0.8);
+
+        }
     </style>
 </head>
 
-<body style="position:relative;margin:0;-zindex:0">
+<body style="position:relative;margin:0;-zindex:0 ;color:rgba(255,255,255,0.8);">
 
 
 
 
     <div class="divFormulario">
-        <table border="2px" style="border-spacing:5px; border-collapse:separate;color:black;">
+        <table class="tabla"  style="border-spacing:3px; border-collapse:separate; width:50%;">
             <caption style="caption-side: top;">Datos del usuario</caption>
             <thead>
                 <tr>
-                    <th>Nombre</th>
-                    <th>Primer Apellido</th>
-                    <th>Segundo Apellido</th>
-                    <th>Fecha alta</th>
-                    <th>Numero vehiculos</th>
+                    <th class="tdcolor">Nombre</th>
+                    <th class="tdcolor">Primer Apellido</th>
+                    <th class="tdcolor">Segundo Apellido</th>
+                    <th class="tdcolor">Fecha alta</th>
+                    <th class="tdcolor">Numero vehiculos</th>
                 </tr>
             </thead>
             <tbody>
                 <?php foreach ($users as $registro) : ?>
                     <tr>
-                        <td><?php echo $registro['nombre'] ?></td>
-                        <td><?php echo $registro['apellido1'] ?></td>
-                        <td><?php echo $registro['apellido2'] ?></td>
-                        <td><?php echo $registro['fecha_alta'] ?></td>
-                        <td><?php echo $registro['numero_vehiculos'] ?></td>
+                        <td class="tdcolor"><center><?php echo $registro['nombre'] ?></center></td>
+                        <td class="tdcolor"><center><?php echo $registro['apellido1'] ?></center></td>
+                        <td class="tdcolor"><center><?php echo $registro['apellido2'] ?></center></td>
+                        <td class="tdcolor"><center><?php echo $registro['fecha_alta'] ?></center></td>
+                        <td class="tdcolor"><center><?php echo $registro['numero_vehiculos'] ?></center></td>
                     </tr>
                 <?php endforeach ?>
             </tbody>
         </table>
     </div>
     <div class="divFormulario">
-        <table border="2px" style="border-spacing:15px; border-collapse:separate;color:black;">
+        <table  class="tabla"  style="border-spacing:3px; border-collapse:separate;  width:50%;">
             <caption>Lista de vehículos</caption>
             <thead>
                 <tr>
-                    <th>Marca</th>
-                    <th>Modelo</th>
-                    <th>Matricula</th>
-                    <th>Combustible</th>
-                    <th>Tipo de Motor</th>
+                    <th class="tdcolor">Marca</th>
+                    <th class="tdcolor">Modelo</th>
+                    <th class="tdcolor">Matricula</th>
+                    <th class="tdcolor">Combustible</th>
+                    <th class="tdcolor">Tipo de Motor</th>
                 </tr>
             </thead>
             <tbody>
                 <?php foreach ($coches as $registro) : ?>
                     <tr>
-                        <td><?php echo $registro['marca'] ?></td>
-                        <td><?php echo $registro['modelo'] ?></td>
-                        <td><?php echo $registro['matricula'] ?></td>
-                        <td><?php echo $registro['combustible'] ?></td>
-                        <td><?php echo $registro['tipo_motor'] ?></td>
+                        <td class="tdcolor"><center><?php echo $registro['marca'] ?></center></td>
+                        <td class="tdcolor"><center><?php echo $registro['modelo'] ?></center></td>
+                        <td class="tdcolor"><center><?php echo $registro['matricula'] ?></center></td>
+                        <td class="tdcolor"><center><?php echo $registro['combustible'] ?></center></td>
+                        <td class="tdcolor"><center><?php echo $registro['tipo_motor'] ?></center></td>
                     </tr>
                 <?php endforeach ?>
             </tbody>
         </table>
     </div>
     <br>
-    <div style="background: white;">
-        <form action="datosUsuario.php" method="POST" target="self">
-            <input type="hidden" name="username" value="$usu">
-            <input type="hidden" name="pass" value="$pass">
+    <div class="divFormulario">
+        <form action="datosUsuario.php" method="POST" target="self" >
+            <input  type="hidden" name="username" value="<?php echo $usu; ?>">
+            <input type="hidden" name="pass" value="<?php echo $pass; ?>">
             <input type="text" name="marca" placeholder="Marca">
             <input type="text" name="modelo" placeholder="modelo">
             <input type="text" name="matricula" maxlength="7" placeholder="matricula">
@@ -161,3 +185,6 @@ if(include 'Conexion.php'){
 </body>
 
 </html>
+<?php
+    require "../ArchivosCSS/footer.html"
+    ?>
