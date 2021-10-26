@@ -28,7 +28,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         }
 
         $id_usu = $resID[0]['id_usuario'];
-        echo ($id_usu);
 
     
     //Insertar vehículo nuevo

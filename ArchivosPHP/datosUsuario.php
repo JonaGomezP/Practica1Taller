@@ -1,5 +1,4 @@
 <?php
-
 include('conexion.php');
 
 if (mysqli_connect_error()) {
@@ -25,10 +24,6 @@ if (mysqli_connect_error()) {
 
 
     //Comprobar si viene con método post y que haga INSERT (botón guardar)- -------------------------------------------------------------
-
-
-
-    //Llamar al 
 
 }
 ?>
@@ -94,7 +89,7 @@ if (mysqli_connect_error()) {
                         <td><?php echo $registro['apellido2'] ?></td>
                         <td><?php echo $registro['fecha_alta'] ?></td>
                         <td><?php echo $registro['numero_vehiculos'] ?></td>
-                        
+
                     </tr>
                 <?php endforeach ?>
             </tbody>
@@ -107,9 +102,9 @@ if (mysqli_connect_error()) {
                 <tr>
                     <th>Marca</th>
                     <th>Modelo</th>
-                    <th>Matricula</th>
                     <th>Combustible</th>
                     <th>Tipo de Motor</th>
+                    <th>Matricula</th>
                 </tr>
             </thead>
             <tbody>
@@ -117,13 +112,15 @@ if (mysqli_connect_error()) {
                     <tr>
                         <td><?php echo $registro['marca'] ?></td>
                         <td><?php echo $registro['modelo'] ?></td>
-                        <td><?php echo $registro['matricula'] ?></td>
                         <td><?php echo $registro['combustible'] ?></td>
                         <td><?php echo $registro['tipo_motor'] ?></td>
-                        <td ><form action="listaServicios.php" method="POST">
-                            <input type="hidden" name="id_vehiculo" value="<?php echo $registro['id_vehiculo'] ?>">
-                            <input type="submit" value="Consultar lista de servicios">
-                        </form></td>
+                        <td>
+                            <form action="listaServicios.php" method="POST">
+                                <input name="matricula" value="<?php echo $registro['matricula'] ?>" readonly>
+                                <input type="hidden" name="id_vehiculo" value="<?php echo $registro['id_vehiculo'] ?>">
+                                <input type="submit" value="Consultar lista de servicios">
+                            </form>
+                        </td>
                     </tr>
                 <?php endforeach ?>
             </tbody>
