@@ -60,11 +60,12 @@ if (mysqli_connect_error()) {
             </tbody>
         </table>
     </div>
+    <!--Formulario que añade un nuevo servicio -->
+
     <div style="background: white;">
         <form action="insertarServicio.php" method="POST" target="_self">
-            <input type="hidden" name="username" value="<?php echo $usu ?>">
-            <input type="hidden" name="pass" value="<?php echo $pass ?>">
-            <input type="hidden" name="matricula" value="<?php echo $matricula ?>">
+            <input type="hidden" name="id_vehiculo" value="<?php echo $id_v ?>">
+            <input name="matricula" value="<?php echo $matricula ?>" readonly>
             <input type="text" name="servicio" placeholder="Servicio">
             <input type="date" name="ultima_revision" placeholder="Última revisión">
             <input type="date" name="proxima_revision" maxlength="7" placeholder="Próxima revisión">

@@ -11,4 +11,3 @@ if ($resultadosListaServicios === false) {
         $servicios = mysqli_fetch_all($resultadosListaServicios, MYSQLI_ASSOC);
 }
 ?>
-

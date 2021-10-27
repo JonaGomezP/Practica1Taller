@@ -38,85 +38,67 @@ if (mysqli_connect_error()) {
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Datos del usuario</title>
-    <style>
-        * {
-            margin: 0;
-        }
-
-        body {
-            background: white;
-            padding-left: 20px;
-            padding-top: 20px;
-        }
-
-        button {
-            cursor: pointer;
-        }
-
-        caption {
-            caption-side: top;
-        }
-
-        #tabla_lista_servicios {
-            position: relative;
-            margin-top: 10px;
-        }
-    </style>
+    <link rel="stylesheet" href="../CSS/archivo.css">
+    
 </head>
 
 <body style="position:relative;margin:0;-zindex:0">
+<header>
+    <?php require('../HTML/header.html'); ?>
+</header>
 
 
-
+    <!--Tabla que muestra la lista de usuarios -->
 
     <div class="divFormulario">
-        <table border="2px" style="border-spacing:5px; border-collapse:separate;color:black;">
+        <table border="2px">
             <caption style="caption-side: top;">Datos del usuario</caption>
             <thead>
                 <tr>
-                    <th>Nombre</th>
-                    <th>Primer Apellido</th>
-                    <th>Segundo Apellido</th>
-                    <th>Fecha alta</th>
-                    <th>Numero vehiculos</th>
+                    <th class="tdcolor">Nombre</th>
+                    <th class="tdcolor">Primer Apellido</th>
+                    <th class="tdcolor">Segundo Apellido</th>
+                    <th class="tdcolor">Fecha alta</th>
+                    <th class="tdcolor">Numero vehiculos</th>
                 </tr>
             </thead>
             <tbody>
                 <?php foreach ($users as $registro) : ?>
                     <tr>
-                        <td><?php echo $registro['nombre'] ?></td>
-                        <td><?php echo $registro['apellido1'] ?></td>
-                        <td><?php echo $registro['apellido2'] ?></td>
-                        <td><?php echo $registro['fecha_alta'] ?></td>
-                        <td><?php echo $registro['numero_vehiculos'] ?></td>
+                        <td class="tdcolor"><?php echo $registro['nombre'] ?></td>
+                        <td class="tdcolor"><?php echo $registro['apellido1'] ?></td>
+                        <td class="tdcolor"><?php echo $registro['apellido2'] ?></td>
+                        <td class="tdcolor"><?php echo $registro['fecha_alta'] ?></td>
+                        <td class="tdcolor"><?php echo $registro['numero_vehiculos'] ?></td>
 
                     </tr>
                 <?php endforeach ?>
             </tbody>
         </table>
     </div>
+    <!--Tabla que muestra la lista de vehículos y envía como formulario el campo id_vehiculo para la consulta de servicios -->
     <div class="divFormulario">
-        <table border="2px" style="border-spacing:15px; border-collapse:separate;color:black;">
+        <table border="2px">
             <caption>Lista de vehículos</caption>
             <thead>
                 <tr>
-                    <th>Marca</th>
-                    <th>Modelo</th>
-                    <th>Combustible</th>
-                    <th>Tipo de Motor</th>
-                    <th>Matricula</th>
+                    <th class="tdcolor">Marca</th>
+                    <th class="tdcolor">Modelo</th>
+                    <th class="tdcolor">Combustible</th>
+                    <th class="tdcolor">Tipo de Motor</th>
+                    <th class="tdcolor">Matricula</th>
                 </tr>
             </thead>
             <tbody>
                 <?php foreach ($coches as $registro) : ?>
                     <tr>
-                        <td><?php echo $registro['marca'] ?></td>
-                        <td><?php echo $registro['modelo'] ?></td>
-                        <td><?php echo $registro['combustible'] ?></td>
-                        <td><?php echo $registro['tipo_motor'] ?></td>
-                        <td>
+                        <td class="tdcolor"><?php echo $registro['marca'] ?></td>
+                        <td class="tdcolor"><?php echo $registro['modelo'] ?></td>
+                        <td class="tdcolor"><?php echo $registro['combustible'] ?></td>
+                        <td class="tdcolor"><?php echo $registro['tipo_motor'] ?></td>
+                        <td class="tdcolor">
                             <form action="listaServicios.php" method="POST">
-                                <input name="matricula" value="<?php echo $registro['matricula'] ?>" readonly>
+                                <input id="matricula" name="matricula" style="background-image: url('../IMG/matricula-vacia.png');" value="<?php echo $registro['matricula'] ?>" readonly>
                                 <input type="hidden" name="id_vehiculo" value="<?php echo $registro['id_vehiculo'] ?>">
                                 <input type="submit" value="Consultar lista de servicios">
                             </form>
@@ -127,7 +109,9 @@ if (mysqli_connect_error()) {
         </table>
     </div>
     <br>
-    <div style="background: white;">
+    <!--Formulario que añade un nuevo vehículo -->
+
+    <div class="divFormulario agregar">
         <form action="insertarVehiculos.php" method="POST" target="_self">
             <input type="hidden" name="id_usuario" value="<?php echo $id_usu ?>">
             <input type="hidden" name="username" value="<?php echo $usu ?>">
@@ -140,7 +124,9 @@ if (mysqli_connect_error()) {
             <input type="submit" value="guardar">
         </form>
     </div>
-
+<footer>
+<?php require('../HTML/footer.html')?>
+</footer>
 </body>
 
 </html>
