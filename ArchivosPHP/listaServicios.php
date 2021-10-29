@@ -17,6 +17,8 @@ if (mysqli_connect_error()) {
         //Consulta de servicios (llama archivo consultaListaServicios.php)
 
         include('consultaListaServicios.php');
+        include('consultaDetallesServicios.php');
+
 
         //--------------------------------------------------------------------------
     } else {
@@ -37,7 +39,8 @@ if (mysqli_connect_error()) {
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Lista de servicios</title>
+    <link rel="stylesheet" href="../CSS/tablas.css">
 </head>
 
 <body>
@@ -51,14 +54,21 @@ if (mysqli_connect_error()) {
                 </tr>
             </thead>
             <tbody>
-                <?php foreach ($servicios as $registro) : ?>
+                <?php foreach ($listaServicios as $registro) : ?>
                     <tr>
                         <td><?php echo $registro['matricula'] ?></td>
                         <td><?php echo $registro['servicio'] ?></td>
+                        <td>
+                        <form action="listaServicios.php" method="POST">
+                                <input name="id_servicio" value="<?php echo $registro['id_servicio']?>" hidden disabled>
+                                <input type="button" value="Consultar detalles del servicio" onclick="mostrarDetallesServicios()">
+                            </form>
+                        </td>
                     </tr>
                 <?php endforeach ?>
             </tbody>
         </table>
+        <?php echo $registro['id_servicio'];?>
     </div>
     <!--Formulario que añade un nuevo servicio -->
 
@@ -73,6 +83,29 @@ if (mysqli_connect_error()) {
             <input type="submit" value="guardar">
         </form>
     </div>
+
+    <div id="tabla_detalles_servicios">
+        <table border="2px" style="border-spacing:15px; border-collapse:separate;color:black;">
+            <caption>Detalles de servicios</caption>
+            <thead>
+                <tr>
+                    <th>Última revisión</th>
+                    <th>Próxima revisión</th>
+                    <th>Comentarios</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php foreach ($detallesServicios as $registro) : ?>
+                    <tr>
+                        <td><?php echo $registro['ultima_revision'] ?></td>
+                        <td><?php echo $registro['proxima_revision'] ?></td>
+                        <td><?php echo $registro['comentarios'] ?></td>
+                    </tr>
+                <?php endforeach ?>
+            </tbody>
+        </table>
+    </div>
 </body>
 
 </html>
+<script src="../JS/tablas.js"></script>
