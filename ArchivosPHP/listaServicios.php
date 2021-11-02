@@ -9,7 +9,6 @@ if (mysqli_connect_error()) {
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $id_v = $_POST['id_vehiculo'];
         $matricula = $_POST['matricula'];
-
         //--------------------------------------------------------------------------
 
 
@@ -17,8 +16,6 @@ if (mysqli_connect_error()) {
         //Consulta de servicios (llama archivo consultaListaServicios.php)
 
         include('consultaListaServicios.php');
-        include('consultaDetallesServicios.php');
-
 
         //--------------------------------------------------------------------------
     } else {
@@ -49,6 +46,7 @@ if (mysqli_connect_error()) {
             <caption>Lista de servicios</caption>
             <thead>
                 <tr>
+                    <th>ID vehiculo</th>
                     <th>Matrícula</th>
                     <th>Servicio</th>
                 </tr>
@@ -56,19 +54,17 @@ if (mysqli_connect_error()) {
             <tbody>
                 <?php foreach ($listaServicios as $registro) : ?>
                     <tr>
-                        <td><?php echo $registro['matricula'] ?></td>
-                        <td><?php echo $registro['servicio'] ?></td>
-                        <td>
                         <form action="listaServicios.php" method="POST">
-                                <input name="id_servicio" value="<?php echo $registro['id_servicio']?>" hidden disabled>
-                                <input type="button" value="Consultar detalles del servicio" onclick="mostrarDetallesServicios()">
-                            </form>
-                        </td>
+                            <td><input name="id_vehiculo" type="text" value="<?php echo $id_v ?>"></td>
+                            <td><input name="matricula" type="text" value="<?php echo $matricula?>"></td>
+                            <td><?php echo $registro['servicio'] ?></td>
+                            <td><input name="id_servicio" value="<?php echo $registro['id_servicio'] ?>" readonly></td>
+                            <td><input type="submit" value="Consultar detalles del servicio" onmouseover="mostrarDetallesServicios()" onmouseleave="ocultarDetallesServicios()"></td>
+                        </form>
                     </tr>
                 <?php endforeach ?>
             </tbody>
         </table>
-        <?php echo $registro['id_servicio'];?>
     </div>
     <!--Formulario que añade un nuevo servicio -->
 
@@ -84,27 +80,33 @@ if (mysqli_connect_error()) {
         </form>
     </div>
 
-    <div id="tabla_detalles_servicios">
-        <table border="2px" style="border-spacing:15px; border-collapse:separate;color:black;">
-            <caption>Detalles de servicios</caption>
-            <thead>
-                <tr>
-                    <th>Última revisión</th>
-                    <th>Próxima revisión</th>
-                    <th>Comentarios</th>
-                </tr>
-            </thead>
-            <tbody>
-                <?php foreach ($detallesServicios as $registro) : ?>
+    <?php
+    include('consultaDetallesServicios.php');
+
+    if (isset($_POST['id_servicio'])) : ?>
+
+        <div id="tabla_detalles_servicios">
+            <table border="2px" style="border-spacing:15px; border-collapse:separate;color:black;">
+                <caption>Detalles de servicios</caption>
+                <thead>
                     <tr>
-                        <td><?php echo $registro['ultima_revision'] ?></td>
-                        <td><?php echo $registro['proxima_revision'] ?></td>
-                        <td><?php echo $registro['comentarios'] ?></td>
+                        <th>Última revisión</th>
+                        <th>Próxima revisión</th>
+                        <th>Comentarios</th>
                     </tr>
-                <?php endforeach ?>
-            </tbody>
-        </table>
-    </div>
+                </thead>
+                <tbody>
+                    <?php foreach ($detallesServicios as $registro) : ?>
+                        <tr>
+                            <td><?php echo $registro['ultima_revision'] ?></td>
+                            <td><?php echo $registro['proxima_revision'] ?></td>
+                            <td><?php echo $registro['comentarios'] ?></td>
+                        </tr>
+                    <?php endforeach ?>
+                </tbody>
+            </table>
+        </div>
+    <?php endif; ?>
 </body>
 
 </html>
