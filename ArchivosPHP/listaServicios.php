@@ -16,7 +16,6 @@ if (mysqli_connect_error()) {
         //Consulta de servicios (llama archivo consultaListaServicios.php)
 
         include('consultaListaServicios.php');
-
         //--------------------------------------------------------------------------
     } else {
         echo '<p>Por favor, complete el <a href="login.html">formulario</a></p>';
@@ -56,10 +55,12 @@ if (mysqli_connect_error()) {
                     <tr>
                         <form action="listaServicios.php" method="POST">
                             <td><input name="id_vehiculo" type="text" value="<?php echo $id_v ?>"></td>
-                            <td><input name="matricula" type="text" value="<?php echo $matricula?>"></td>
+                            <td><input name="matricula" type="text" value="<?php echo $matricula ?>"></td>
                             <td><?php echo $registro['servicio'] ?></td>
-                            <td><input name="id_servicio" value="<?php echo $registro['id_servicio'] ?>" readonly></td>
-                            <td><input type="submit" value="Consultar detalles del servicio" onmouseover="mostrarDetallesServicios()" onmouseleave="ocultarDetallesServicios()"></td>
+                            <input name="id_servicio" value="<?php echo $registro['id_servicio'] ?>" hidden>
+                            <td>
+                                <button value="oculto" id="consulta_detalles" type="submit" onmouseover="detalles(this.value)">Consultar detalles</button>
+                            </td>
                         </form>
                     </tr>
                 <?php endforeach ?>
@@ -81,9 +82,10 @@ if (mysqli_connect_error()) {
     </div>
 
     <?php
-    include('consultaDetallesServicios.php');
 
-    if (isset($_POST['id_servicio'])) : ?>
+    if (isset($_POST['id_servicio'])) :
+        include('consultaDetallesServicios.php');
+    ?>
 
         <div id="tabla_detalles_servicios">
             <table border="2px" style="border-spacing:15px; border-collapse:separate;color:black;">
