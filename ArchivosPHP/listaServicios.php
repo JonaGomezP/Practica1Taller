@@ -27,7 +27,6 @@ if (mysqli_connect_error()) {
 }
 ?>
 
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -36,30 +35,38 @@ if (mysqli_connect_error()) {
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Lista de servicios</title>
+    <link rel="stylesheet" href="../CSS/common.css">
     <link rel="stylesheet" href="../CSS/tablas.css">
+
+
 </head>
 
 <body>
+    <header>
+        <?php require('../HTML/header.html'); ?>
+    </header>
+
+    <!--Tabla que muestra la lista de servicios -->
     <div class="divFormulario">
-        <table border="2px" style="border-spacing:15px; border-collapse:separate;color:black;">
+        <table>
             <caption>Lista de servicios</caption>
             <thead>
                 <tr>
-                    <th>ID vehiculo</th>
-                    <th>Matrícula</th>
-                    <th>Servicio</th>
+                    <th class="tdcolor">ID vehiculo</th>
+                    <th class="tdcolor">Matrícula</th>
+                    <th class="tdcolor">Servicio</th>
                 </tr>
             </thead>
             <tbody>
                 <?php foreach ($listaServicios as $registro) : ?>
                     <tr>
                         <form action="listaServicios.php" method="POST">
-                            <td><input name="id_vehiculo" type="text" value="<?php echo $id_v ?>"></td>
-                            <td><input name="matricula" type="text" value="<?php echo $matricula ?>"></td>
-                            <td><?php echo $registro['servicio'] ?></td>
-                            <input name="id_servicio" value="<?php echo $registro['id_servicio'] ?>" hidden>
-                            <td>
-                                <button value="oculto" id="consulta_detalles" type="submit" onmouseover="detalles(this.value)">Consultar detalles</button>
+                            <td class="tdcolor"><input class="lista_ser" name="id_vehiculo" type="text" value="<?php echo $id_v ?>"></td>
+                            <td class="tdcolor"><input class="lista_ser" name="matricula" type="text" value="<?php echo $matricula ?>" readonly></td>
+                            <td class="tdcolor"><?php echo $registro['servicio'] ?></td>
+                            <input class="lista_ser" type="hidden" name="id_servicio" value="<?php echo $registro['id_servicio'] ?>" >
+                            <td class="celda_boton">
+                                <input id="enviar_detalles" type="submit" value="Detalles" onmouseover="mostrarDetalles()" onmouseout="ocultarDetalles()">
                             </td>
                         </form>
                     </tr>
@@ -69,7 +76,7 @@ if (mysqli_connect_error()) {
     </div>
     <!--Formulario que añade un nuevo servicio -->
 
-    <div style="background: white;">
+    <div class="divFormulario">
         <form action="insertarServicio.php" method="POST" target="_self">
             <input type="hidden" name="id_vehiculo" value="<?php echo $id_v ?>">
             <input name="matricula" value="<?php echo $matricula ?>" readonly>
@@ -87,28 +94,33 @@ if (mysqli_connect_error()) {
         include('consultaDetallesServicios.php');
     ?>
 
-        <div id="tabla_detalles_servicios">
-            <table border="2px" style="border-spacing:15px; border-collapse:separate;color:black;">
+        <div class="divFormulario" id="detalles_servicios" style="visibility: hidden;">
+            <table>
                 <caption>Detalles de servicios</caption>
                 <thead>
                     <tr>
-                        <th>Última revisión</th>
-                        <th>Próxima revisión</th>
-                        <th>Comentarios</th>
+                        <th class="tdcolor">Última revisión</th>
+                        <th class="tdcolor">Próxima revisión</th>
+                        <th class="tdcolor">Comentarios</th>
                     </tr>
                 </thead>
                 <tbody>
                     <?php foreach ($detallesServicios as $registro) : ?>
                         <tr>
-                            <td><?php echo $registro['ultima_revision'] ?></td>
-                            <td><?php echo $registro['proxima_revision'] ?></td>
-                            <td><?php echo $registro['comentarios'] ?></td>
+                            <td class="tdcolor"><?php echo $registro['ultima_revision'] ?></td>
+                            <td class="tdcolor"><?php echo $registro['proxima_revision'] ?></td>
+                            <td class="tdcolor"><?php echo $registro['comentarios'] ?></td>
                         </tr>
                     <?php endforeach ?>
                 </tbody>
             </table>
         </div>
     <?php endif; ?>
+
+    <footer>
+        <?php require('../HTML/footer.html') ?>
+
+    </footer>
 </body>
 
 </html>

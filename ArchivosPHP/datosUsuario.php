@@ -38,7 +38,7 @@ if (mysqli_connect_error()) {
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Datos del usuario</title>
-    <link rel="stylesheet" href="../CSS/archivo.css">
+    <link rel="stylesheet" href="../CSS/common.css">
     
 </head>
 
@@ -51,7 +51,7 @@ if (mysqli_connect_error()) {
     <!--Tabla que muestra la lista de usuarios -->
 
     <div class="divFormulario">
-        <table border="2px">
+        <table>
             <caption style="caption-side: top;">Datos del usuario</caption>
             <thead>
                 <tr>
@@ -78,7 +78,7 @@ if (mysqli_connect_error()) {
     </div>
     <!--Tabla que muestra la lista de vehículos y envía como formulario el campo id_vehiculo para la consulta de servicios -->
     <div class="divFormulario">
-        <table border="2px">
+        <table>
             <caption>Lista de vehículos</caption>
             <thead>
                 <tr>
@@ -111,7 +111,7 @@ if (mysqli_connect_error()) {
     <br>
     <!--Formulario que añade un nuevo vehículo -->
 
-    <div class="divFormulario agregar">
+    <div class="divFormulario">
         <form action="insertarVehiculos.php" method="POST" target="_self">
             <input type="hidden" name="id_usuario" value="<?php echo $id_usu ?>">
             <input type="hidden" name="username" value="<?php echo $usu ?>">
