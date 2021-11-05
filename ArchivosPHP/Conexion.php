@@ -1,9 +1,9 @@
 <?php
     //Datos de conexión a BBDD
-    $db_host = "127.0.0.1";
+    $db_host = "localhost";
     $db_name = "tallerServidores";
-    $db_user = "user";
-    $db_pass = "1234";
+    $db_user = "Admin";
+    $db_pass = "Admin123";
 
 
     //Establecer conexión con BBDD

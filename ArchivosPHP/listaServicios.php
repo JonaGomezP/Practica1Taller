@@ -59,7 +59,7 @@ if (mysqli_connect_error()) {
                             <td><input name="matricula" type="text" value="<?php echo $matricula?>"></td>
                             <td><?php echo $registro['servicio'] ?></td>
                             <td><input name="id_servicio" value="<?php echo $registro['id_servicio'] ?>" readonly></td>
-                            <td><input type="submit" value="Consultar detalles del servicio" onmouseover="mostrarDetallesServicios()" onmouseleave="ocultarDetallesServicios()"></td>
+                            <td><input id="boton" type="submit" value="Consultar detalles del servicio" onclick="ocultarDetallesServicios()"></td>
                         </form>
                     </tr>
                 <?php endforeach ?>
