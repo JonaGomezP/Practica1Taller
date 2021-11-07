@@ -20,13 +20,13 @@
     </div>
 
     <?php
-    require "../ArchivosCSS/header.html"
+    require "../HTML/header.html"
     ?>
     <?php
-    require "../ArchivosCSS/fondoLogin.html"
+    require "../HTML/fondoLogin.html"
     ?>
     <?php
-    require "../ArchivosCSS/footer.html"
+    require "../HTML/footer.html"
     ?>
 </body>
 
