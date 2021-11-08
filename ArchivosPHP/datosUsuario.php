@@ -39,13 +39,13 @@ if (mysqli_connect_error()) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Datos del usuario</title>
     <link rel="stylesheet" href="../CSS/common.css">
-    
+
 </head>
 
 <body style="position:relative;margin:0;-zindex:0">
-<header>
-    <?php require('../HTML/header.html'); ?>
-</header>
+    <header>
+        <?php require('../HTML/header.html'); ?>
+    </header>
 
 
     <!--Tabla que muestra la lista de usuarios -->
@@ -59,7 +59,11 @@ if (mysqli_connect_error()) {
                     <th class="tdcolor">Primer Apellido</th>
                     <th class="tdcolor">Segundo Apellido</th>
                     <th class="tdcolor">Fecha alta</th>
-                    <th class="tdcolor">Numero vehiculos</th>
+                    <?php if ($res_admin == 0) : ?>
+                        <th class="tdcolor">Numero vehiculos</th>
+                        <th class="tdcolor">Última conexión</th>
+                    <?php endif; ?>
+
                 </tr>
             </thead>
             <tbody>
@@ -69,10 +73,12 @@ if (mysqli_connect_error()) {
                         <td class="tdcolor"><?php echo $registro['apellido1'] ?></td>
                         <td class="tdcolor"><?php echo $registro['apellido2'] ?></td>
                         <td class="tdcolor"><?php echo $registro['fecha_alta'] ?></td>
-                        <td class="tdcolor"><?php echo $registro['numero_vehiculos'] ?></td>
-
+                        <?php if ($res_admin == "0") : ?>
+                            <td class="tdcolor"><?php echo $cuenta ?></td>
+                            <td class="tdcolor"><?php require("cookies.php"); setcookie("ultimoAcceso", "$nombre_cookie"); ?></td>
+                        <?php endif; ?>
+                        <?php endforeach ?>
                     </tr>
-                <?php endforeach ?>
             </tbody>
         </table>
     </div>
@@ -108,6 +114,7 @@ if (mysqli_connect_error()) {
             </tbody>
         </table>
     </div>
+
     <br>
     <!--Formulario que añade un nuevo vehículo -->
 
@@ -124,9 +131,10 @@ if (mysqli_connect_error()) {
             <input type="submit" value="guardar">
         </form>
     </div>
-<footer>
-<?php require('../HTML/footer.html')?>
-</footer>
+
+    <footer>
+        <?php require('../HTML/footer.html') ?>
+    </footer>
 </body>
 
 
