@@ -9,13 +9,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $pass = $_POST['pass'];
     $res_admin=$_POST['admin'];
     $id_prueba=$_POST['id_prueba'];
-    print_r($usu);
-
 
     
     //Insertar vehículo nuevo
 
-    $borrarUsuario = "DELETE from datos_usuario where nombre='$usu' and pass='$pass'";
+    $borrarUsuario = "DELETE from datos_usuario where nombre='$usu'";
 
     $sql = mysqli_query($conn, $borrarUsuario);    
     include("datosUsuario.php");

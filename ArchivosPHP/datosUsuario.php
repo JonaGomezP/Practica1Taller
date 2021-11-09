@@ -9,6 +9,21 @@ if (mysqli_connect_error()) {
         $usu = $_POST['username'];
         $pass = $_POST['pass'];
 
+        //numero de visitas
+        if(isset($_COOKIE['contador']))
+        { 
+            setcookie('contador', $_COOKIE['contador'] + 1); 
+            $mensaje = 'Número de visitas global: ' . $_COOKIE['contador']; 
+        } 
+        else 
+        { 
+            setcookie('contador', 1); 
+            $mensaje = 'Bienvenido a nuestra página web'; 
+        } 
+
+        
+        
+
         //--------------------------------------------------------------------------
         //Consulta de usuarios (llama archivo consultaUsuarios.php)
 
@@ -39,29 +54,33 @@ if (mysqli_connect_error()) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Datos del usuario</title>
     <link rel="stylesheet" href="../CSS/common.css">
-    
+
 </head>
 
 <body style="position:relative;margin:0;-zindex:0">
-<header>
-    <?php require('../HTML/header.html'); ?>
-</header>
+<p style="color: white;"><?php echo $mensaje ?><p>
+    <header>
+        <?php require('../HTML/header.html'); ?>
+        
+    </header>
 
 
     <!--Tabla que muestra la lista de usuarios -->
 
     <div class="divFormulario">
         <table>
-            <caption style="caption-side: top;">Datos del usuario</caption>
+            <caption style="caption-side: top;">Datos de los Usuarios Registrados</caption>
             <thead>
                 <tr>
                     <th class="tdcolor">Nombre</th>
                     <th class="tdcolor">Primer Apellido</th>
                     <th class="tdcolor">Segundo Apellido</th>
                     <th class="tdcolor">Fecha alta</th>
-                    <?php if($res_admin==0): ?>
+                    <?php if ($res_admin == 0) : ?>
                         <th class="tdcolor">Numero vehiculos</th>
+                        <th class="tdcolor">Última conexión</th>
                     <?php endif; ?>
+
                 </tr>
             </thead>
             <tbody>
@@ -71,28 +90,29 @@ if (mysqli_connect_error()) {
                         <td class="tdcolor"><?php echo $registro['apellido1'] ?></td>
                         <td class="tdcolor"><?php echo $registro['apellido2'] ?></td>
                         <td class="tdcolor"><?php echo $registro['fecha_alta'] ?></td>
-                        <?php if($res_admin==0): ?>
-                            <td class="tdcolor"><?php echo $cuenta['numero_vehiculos'] ?></td>
+                        <?php if ($res_admin == "0") : ?>
+                            <td class="tdcolor"><?php echo $cuenta ?></td>
+                            <td class="tdcolor"><?php require("cookies.php"); setcookie("ultimoAcceso", "$nombre_cookie"); ?></td>
                         <?php endif; ?>
-                        <td class="tdcolor">
+                        
                             <?php if($res_admin==1): ?>
-                                <form action="borrarUsuario.php" method="POST">
-                                    <input type="hidden" name="username" value="<?php $registro['nombre'] ?>">
-                                    <input type="hidden" name="pass" value="<?php $registro['pass']?>">
-                                    <input type="hidden" name="admin" value="<?php echo $res_admin ?>">
-                                    <input type="hidden" name="id_prueba" value="<?php echo $id_prueba ?>">
-                                    <input type="submit" value="Borrar">
-                                </form>
+                                <td class="tdcolor">
+                                    <form action="borrarUsuario.php" method="POST">
+                                        <input type="hidden" name="username" value="<?php echo $registro['nombre'] ?>">
+                                        <input type="hidden" name="pass" value="<?php echo $pass ?>">
+                                        <input type="hidden" name="admin" value="<?php echo $res_admin ?>">
+                                        <input type="hidden" name="id_prueba" value="<?php echo $id_prueba ?>">
+                                        <input type="submit" value="Borrar">
+                                    </form>
+                                </td>
                             <?php endif; ?>
-                        </td>
-
+                        
+                        <?php endforeach ?>
                     </tr>
-                <?php endforeach ?>
             </tbody>
         </table>
     </div>
     <!--Tabla que muestra la lista de vehículos y envía como formulario el campo id_vehiculo para la consulta de servicios -->
-    <?php if($res_admin==0): ?>
     <div class="divFormulario">
         <table>
             <caption>Lista de vehículos</caption>
@@ -124,6 +144,7 @@ if (mysqli_connect_error()) {
             </tbody>
         </table>
     </div>
+
     <br>
     <!--Formulario que añade un nuevo vehículo -->
 
@@ -140,9 +161,8 @@ if (mysqli_connect_error()) {
             <input type="submit" value="guardar">
         </form>
     </div>
-<?php endif; ?>
 
-<?php if($res_admin==1): ?>
+    <?php if($res_admin==1): ?>
     <div class="divFormulario">
         <form action="insertarUsuario.php" method="POST" target="_self">
             <input type="hidden" name="id_usuario" value="<?php echo $id_usu ?>">
@@ -156,14 +176,11 @@ if (mysqli_connect_error()) {
             <input type="submit" value="Añadir usuario">
         </form>
     </div>
-
-
-
-
 <?php endif; ?>
-<footer>
-<?php require('../HTML/footer.html')?>
-</footer>
+
+    <footer>
+        <?php require('../HTML/footer.html') ?>
+    </footer>
 </body>
 
 
