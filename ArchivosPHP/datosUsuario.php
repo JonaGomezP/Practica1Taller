@@ -9,6 +9,8 @@ if (mysqli_connect_error()) {
         $usu = $_POST['username'];
         $pass = $_POST['pass'];
 
+        //Comenzamos una sesión
+        require('sesion.php');
         //--------------------------------------------------------------------------
         //Consulta de usuarios (llama archivo consultaUsuarios.php)
 
@@ -21,7 +23,6 @@ if (mysqli_connect_error()) {
     } else {
         echo '<p>Por favor, complete el <a href="login.html">formulario</a></p>';
     }
-
 
     //Comprobar si viene con método post y que haga INSERT (botón guardar)- -------------------------------------------------------------
 
@@ -44,11 +45,12 @@ if (mysqli_connect_error()) {
 
 <body style="position:relative;margin:0;-zindex:0">
     <header>
-        <?php require('../HTML/header.html'); ?>
+        <?php require('../HTML/header.php'); ?>
     </header>
 
 
     <!--Tabla que muestra la lista de usuarios -->
+
 
     <div class="divFormulario">
         <table>
@@ -75,13 +77,15 @@ if (mysqli_connect_error()) {
                         <td class="tdcolor"><?php echo $registro['fecha_alta'] ?></td>
                         <?php if ($res_admin == "0") : ?>
                             <td class="tdcolor"><?php echo $cuenta ?></td>
-                            <td class="tdcolor"><?php require("cookies.php"); setcookie("ultimoAcceso", "$nombre_cookie"); ?></td>
+                            <td class="tdcolor"><?php require("cookies.php");
+                                                setcookie("ultimoAcceso", "$nombre_cookie"); ?></td>
                         <?php endif; ?>
-                        <?php endforeach ?>
+                    <?php endforeach ?>
                     </tr>
             </tbody>
         </table>
     </div>
+
     <!--Tabla que muestra la lista de vehículos y envía como formulario el campo id_vehiculo para la consulta de servicios -->
     <div class="divFormulario">
         <table>
@@ -133,7 +137,7 @@ if (mysqli_connect_error()) {
     </div>
 
     <footer>
-        <?php require('../HTML/footer.html') ?>
+        <?php require('../HTML/footer.php') ?>
     </footer>
 </body>
 

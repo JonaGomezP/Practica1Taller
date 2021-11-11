@@ -11,6 +11,7 @@ if (mysqli_connect_error()) {
         $matricula = $_POST['matricula'];
         //--------------------------------------------------------------------------
 
+        session_start();
 
         //--------------------------------------------------------------------------
         //Consulta de servicios (llama archivo consultaListaServicios.php)
@@ -43,7 +44,7 @@ if (mysqli_connect_error()) {
 
 <body>
     <header>
-        <?php require('../HTML/header.html'); ?>
+        <?php require('../HTML/header.php'); ?>
     </header>
 
     <!--Tabla que muestra la lista de servicios -->
@@ -118,7 +119,7 @@ if (mysqli_connect_error()) {
     <?php endif; ?>
 
     <footer>
-        <?php require('../HTML/footer.html') ?>
+        <?php require('../HTML/footer.php') ?>
 
     </footer>
 </body>

@@ -30,7 +30,6 @@ footer {
     color: white;
      text-align: center;
     padding: 1rem;
-    
 }
 
 </style>
