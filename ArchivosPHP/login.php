@@ -20,13 +20,13 @@
     </div>
 
     <?php
-    require "../HTML/header.php"
+    require "../Comun/header.php"
     ?>
     <?php
-    require "../HTML/fondoLogin.php"
+    require "../Comun/fondoLogin.php"
     ?>
     <?php
-    require "../HTML/footer.php"
+    require "../Comun/footer.php"
     ?>
 </body>
 

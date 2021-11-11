@@ -44,7 +44,7 @@ if (mysqli_connect_error()) {
 
 <body>
     <header>
-        <?php require('../HTML/header.php'); ?>
+        <?php require('../Comun/header.php'); ?>
     </header>
 
     <!--Tabla que muestra la lista de servicios -->
@@ -119,7 +119,7 @@ if (mysqli_connect_error()) {
     <?php endif; ?>
 
     <footer>
-        <?php require('../HTML/footer.php') ?>
+        <?php require('../Comun/footer.php') ?>
 
     </footer>
 </body>

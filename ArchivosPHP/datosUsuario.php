@@ -45,7 +45,7 @@ if (mysqli_connect_error()) {
 
 <body style="position:relative;margin:0;-zindex:0">
     <header>
-        <?php require('../HTML/header.php'); ?>
+        <?php require('../Comun/header.php'); ?>
     </header>
 
 
@@ -77,8 +77,7 @@ if (mysqli_connect_error()) {
                         <td class="tdcolor"><?php echo $registro['fecha_alta'] ?></td>
                         <?php if ($res_admin == "0") : ?>
                             <td class="tdcolor"><?php echo $cuenta ?></td>
-                            <td class="tdcolor"><?php require("cookies.php");
-                                                setcookie("ultimoAcceso", "$nombre_cookie"); ?></td>
+                            <td class="tdcolor"><?php require("cookies.php");?></td>
                         <?php endif; ?>
                     <?php endforeach ?>
                     </tr>
@@ -137,7 +136,7 @@ if (mysqli_connect_error()) {
     </div>
 
     <footer>
-        <?php require('../HTML/footer.php') ?>
+        <?php require('../Comun/footer.php') ?>
     </footer>
 </body>
 
