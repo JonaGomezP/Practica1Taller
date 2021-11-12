@@ -35,5 +35,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $insertar = "INSERT INTO lista_vehiculos (id_usuario,marca,modelo,matricula,combustible,tipo_motor) VALUES ('$id_usu','$marca','$modelo','$matricula','$combustible','$tipo_motor')";
 
     $sql = mysqli_query($conn, $insertar);    
-    include("datosUsuario.php");
+    header("Location: datosUsuario.php");
+
 }

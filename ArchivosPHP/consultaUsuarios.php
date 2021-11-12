@@ -3,12 +3,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     require('conexion.php');
     $ssql = "SELECT * FROM datos_usuario WHERE nombre='$usu' and pass='$pass'";
 
+
     $rs = mysqli_query($conn, $ssql);
 
 
     if (mysqli_num_rows($rs) != 0) {
-        $nombre = $usu;
-        $_SESSION["nombre"] = $nombre;
+        //Comenzamos una sesión
+        
         $sqladministradores = "SELECT administrador from datos_usuario where nombre = '$usu' AND pass = '$pass'";
         $resultadoAdministrador = mysqli_query($conn, $sqladministradores);
 
@@ -17,14 +18,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         } else {
             $admin = mysqli_fetch_all($resultadoAdministrador, MYSQLI_ASSOC);
         }
+
+        //Recuperar si es administrador o no (0 no, distinto de 0 sí)
         $res_admin = $admin[0]['administrador'];
 
 
 
         if ($res_admin == "0") {
             $sqlusuarios =  "SELECT nombre,apellido1,apellido2,fecha_alta,id_usuario
-        FROM datos_usuario
-        where nombre = '$usu' AND pass = '$pass'";
+            FROM datos_usuario
+            where nombre = '$usu' AND pass = '$pass'";
 
             $resultadosUsuarios = mysqli_query($conn, $sqlusuarios);
 

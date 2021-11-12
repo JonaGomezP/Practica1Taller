@@ -9,8 +9,13 @@ if (mysqli_connect_error()) {
         $usu = $_POST['username'];
         $pass = $_POST['pass'];
 
-        //Comenzamos una sesión
+
+        //Comenzamos la sesion
         require('sesion.php');
+
+        $usu = $_SESSION['nombre'];
+        $pass = $_SESSION['pass'];
+        
         //--------------------------------------------------------------------------
         //Consulta de usuarios (llama archivo consultaUsuarios.php)
 
@@ -77,7 +82,7 @@ if (mysqli_connect_error()) {
                         <td class="tdcolor"><?php echo $registro['fecha_alta'] ?></td>
                         <?php if ($res_admin == "0") : ?>
                             <td class="tdcolor"><?php echo $cuenta ?></td>
-                            <td class="tdcolor"><?php require("cookies.php");?></td>
+                            <td class="tdcolor"><?php require("cookies.php"); ?></td>
                         <?php endif; ?>
                     <?php endforeach ?>
                     </tr>
@@ -121,8 +126,9 @@ if (mysqli_connect_error()) {
     <br>
     <!--Formulario que añade un nuevo vehículo -->
 
+    <?php if($res_admin==0): ?>
     <div class="divFormulario">
-        <form action="insertarVehiculos.php" method="POST" target="_self">
+        <form action="datosUsuario.php" method="POST" target="_self">
             <input type="hidden" name="id_usuario" value="<?php echo $id_usu ?>">
             <input type="hidden" name="username" value="<?php echo $usu ?>">
             <input type="hidden" name="pass" value="<?php echo $pass ?>">
@@ -134,6 +140,26 @@ if (mysqli_connect_error()) {
             <input type="submit" value="guardar">
         </form>
     </div>
+    <?php endif; ?>
+
+
+    <!--Formulario que añade un nuevo usuario -->
+    
+    <?php if($res_admin==1): ?>
+    <div class="divFormulario">
+        <form action="datosUsuario.php" method="POST" target="_self">
+            <input type="hidden" name="id_usuario" value="<?php echo $id_usu ?>">
+            <input type="hidden" name="username" value="<?php echo $usu ?>">
+            <input type="hidden" name="pass" value="<?php echo $pass ?>">
+            <input type="text" name="nombre" placeholder="Nombre">
+            <input type="text" name="apellido1" placeholder="Primer apellido">
+            <input type="text" name="apellido2" placeholder="Segundo apellido">
+            <input type="text" name="password" placeholder="Contraseña">
+            <input type="date" name="fecha_alta" placeholder="fecha actual" value="<?php echo date('Y-m-d') ?>" readonly>
+            <input type="submit" value="Añadir usuario">
+        </form>
+    </div>
+<?php endif; ?>
 
     <footer>
         <?php require('../Comun/footer.php') ?>
