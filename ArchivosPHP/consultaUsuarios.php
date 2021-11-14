@@ -17,7 +17,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"){
 
 
     if($res_admin == "0"){
-        $sqlusuarios =  "SELECT nombre,apellido1,apellido2,fecha_alta
+        $sqlusuarios =  "SELECT nombre,apellido1,apellido2,fecha_alta,pass
         FROM datos_usuario
         where nombre = '$usu' AND pass = '$pass'";
         
@@ -29,7 +29,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"){
         $users = mysqli_fetch_all($resultadosUsuarios, MYSQLI_ASSOC);
         }
     } else{
-        $sqlusuarios =  "SELECT nombre,apellido1,apellido2,fecha_alta
+        $sqlusuarios =  "SELECT nombre,apellido1,apellido2,fecha_alta,pass
         FROM datos_usuario where nombre != '$usu' and pass != '$pass'";
         
         $resultadosUsuarios = mysqli_query($conn, $sqlusuarios);

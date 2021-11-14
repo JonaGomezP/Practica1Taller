@@ -8,6 +8,7 @@ if (mysqli_connect_error()) {
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $usu = $_POST['username'];
         $pass = $_POST['pass'];
+        echo($usu);
 
         //numero de visitas
         if(isset($_COOKIE['contador']))
@@ -105,6 +106,15 @@ if (mysqli_connect_error()) {
                                         <input type="submit" value="Borrar">
                                     </form>
                                 </td>
+                                <td class="tdcolor">
+                                    <form action="datosUsuario.php" method="POST">
+                                        <input type="hidden" name="username" value="<?php echo $registro['nombre'] ?>">
+                                        <input type="hidden" name="pass" value="<?php echo $registro['pass'] ?>">
+                                        <input type="hidden" name="admin" value="<?php echo $res_admin ?>">
+                                        <input type="hidden" name="id_prueba" value="<?php echo $id_prueba ?>">
+                                        <input type="submit" value="Consultar vehiculos">
+                                    </form>
+                                </td>
                             <?php endif; ?>
                         
                         <?php endforeach ?>
@@ -162,9 +172,12 @@ if (mysqli_connect_error()) {
         </form>
     </div>
 
+
     <?php if($res_admin==1): ?>
+    
+        
     <div class="divFormulario">
-        <form action="insertarUsuario.php" method="POST" target="_self">
+        <form action="#" method="POST" target="_self">
             <input type="hidden" name="id_usuario" value="<?php echo $id_usu ?>">
             <input type="hidden" name="username" value="<?php echo $usu ?>">
             <input type="hidden" name="pass" value="<?php echo $pass ?>">
@@ -176,7 +189,9 @@ if (mysqli_connect_error()) {
             <input type="submit" value="Añadir usuario">
         </form>
     </div>
+
 <?php endif; ?>
+
 
     <footer>
         <?php require('../HTML/footer.html') ?>
