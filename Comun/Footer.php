@@ -17,6 +17,7 @@
 
 
 footer {
+    position: absolute;
     display: flex;
     justify-content: center;
     text-align: space-around;
@@ -30,6 +31,7 @@ footer {
     color: white;
      text-align: center;
     padding: 1rem;
+    z-index: -1;
 }
 
 </style>

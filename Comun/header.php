@@ -46,11 +46,12 @@
             font-size: 26px;
             align-items: center;
             margin-top: 1em;
+            font-size: 16px;
         }
 
         p img{
-            width: 50px;
-            height: 50px;
+            width: 35px;
+            height: 35px;
             object-fit: cover;
         }
     </style>
