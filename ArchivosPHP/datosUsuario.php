@@ -13,6 +13,7 @@ if (mysqli_connect_error()) {
         require('sesion.php');
         
         
+        
 
         //--------------------------------------------------------------------------
         //Consulta de usuarios (llama archivo consultaUsuarios.php)
@@ -166,8 +167,8 @@ if (mysqli_connect_error()) {
 <?php if ($res_admin == 0) : ?>
     <h2 style="color: white;font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;text-align:center;font-weight: normal;">Nuevo vehículo</h>
         <div class="divFormulario">
-            <form action="datosUsuario.php" method="POST" target="_self">
-                <input type="hidden" name="id_usuario" value="<?php echo $id_usu ?>">
+            <form action="insertarVehiculos.php" method="POST" target="_self">
+                <input type="hidden" name="id_usuario" value="<?php echo $registro['id_usuario'] ?>">
                 <input type="hidden" name="username" value="<?php echo $usu ?>">
                 <input type="hidden" name="pass" value="<?php echo $pass ?>">
                 <input type="text" name="marca" placeholder="Marca">
