@@ -10,7 +10,8 @@ if (mysqli_connect_error()) {
         $usu = $_POST['username'];
         $pass = $_POST['pass'];
         
-            require('sesion.php');
+        require('sesion.php');
+        
         
 
         //--------------------------------------------------------------------------
@@ -94,8 +95,8 @@ if (mysqli_connect_error()) {
                         <!--Formulario para consultar los vehiculos de cada usuario como administrador-->
                         <td>
                             <form action="datosUsuario.php" method="POST">
-                                <input type="hidden" name="username" value="<?php echo $registro['nombre'] ?>">
-                                <input type="hidden" name="pass" value="<?php echo $registro['pass'] ?>">
+                                <input type="" name="username" value="<?php echo $registro['nombre'] ?>">
+                                <input type="" name="pass" value="<?php echo $registro['pass'] ?>">
                                 <input type="hidden" name="id_usuario" value="<?php echo $registro['id_usuario'] ?>">
                                 <input type="submit" value="Consultar vehículos de <?php echo $registro['nombre'] ?>">
                             </form>
@@ -103,9 +104,9 @@ if (mysqli_connect_error()) {
                         <!--Formulario par eliminar un usuario como administrador -->
                         <td>
                             <form action="borrarUsuario.php" method="POST">
-                                <input type="" name="username" value="<?php echo $usu ?>">
-                                <input type="" name="pass" value="<?php echo $pass ?>">
-                                <input type="" name="id_usuario" value="<?php echo $registro['id_usuario'] ?>">
+                                <input type="hidden" name="username" value="<?php echo $usu ?>">
+                                <input type="hidden" name="pass" value="<?php echo $pass ?>">
+                                <input type="hidden" name="id_usuario" value="<?php echo $registro['id_usuario'] ?>">
                                 <input name="papelera" style="width: 3º5px; height:35px;" type="image" src="../IMG/papelera.png" alt="Eliminar usuario">
                             </form>
                         </td>
@@ -163,7 +164,7 @@ if (mysqli_connect_error()) {
 <!--Formulario que añade un nuevo vehículo -->
 
 <?php if ($res_admin == 0) : ?>
-    <h2 style="color: white;font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;text-align:center">Nuevo vehículo</h>
+    <h2 style="color: white;font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;text-align:center;font-weight: normal;">Nuevo vehículo</h>
         <div class="divFormulario">
             <form action="datosUsuario.php" method="POST" target="_self">
                 <input type="hidden" name="id_usuario" value="<?php echo $id_usu ?>">
@@ -183,8 +184,8 @@ if (mysqli_connect_error()) {
     <!--Formulario que añade un nuevo usuario -->
 
     <?php if ($res_admin == 1) : ?>
+        <h2 style="color: white;font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;text-align:center; font-weight: normal">Nuevo usuario</h2>
         <div class="divFormulario">
-            <p>Nuevo usuario</p>
             <form action="datosUsuario.php" method="POST" target="_self">
                 <input type="hidden" name="id_usuario" value="<?php echo $id_usu ?>">
                 <input type="hidden" name="username" value="<?php echo $usu ?>">
