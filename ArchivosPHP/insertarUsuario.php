@@ -18,8 +18,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     $insertarUsuario = "INSERT INTO datos_usuario (nombre,apellido1,apellido2,pass,fecha_alta) VALUES ('$nombre','$apellido1','$apellido2','$password', date()";
 
-    $sql = mysqli_query($conn, $insertarUsuario);
-    session_start();    
-    require('datosUsuario.php');
+    $sql = mysqli_query($conn, $insertarUsuario); 
     //header("Location: /Practica1Taller/ArchivosPHP/datosUsuario.php");
 }

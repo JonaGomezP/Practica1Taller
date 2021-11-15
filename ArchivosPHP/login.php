@@ -18,7 +18,7 @@
             <input type="submit" value="ENTRAR" name="enviar">
         </form>
     </div>
-
+    <?php session_destroy(); ?>
     <?php
     require "../Comun/header.php"
     ?>
