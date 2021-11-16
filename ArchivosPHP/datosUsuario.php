@@ -41,6 +41,7 @@ if (mysqli_connect_error()) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Datos del usuario</title>
     <link rel="stylesheet" href="../CSS/common.css">
+    <script src="../JS/funciones.js"></script>
 
 </head>
 
@@ -97,7 +98,7 @@ if (mysqli_connect_error()) {
                         <td>
                             <form action="datosUsuario.php" method="POST">
                                 <input type="" name="username" value="<?php echo $registro['nombre'] ?>">
-                                <input type="" name="pass" value="<?php echo $registro['pass'] ?>">
+                                <input type="hidden" name="pass" value="<?php echo $registro['pass'] ?>">
                                 <input type="hidden" name="id_usuario" value="<?php echo $registro['id_usuario'] ?>">
                                 <input type="submit" value="Consultar vehículos de <?php echo $registro['nombre'] ?>">
                             </form>
@@ -180,7 +181,7 @@ if (mysqli_connect_error()) {
             </form>
         </div>
 <?php endif; ?>
-
+ 
 
     <!--Formulario que añade un nuevo usuario -->
 
@@ -194,9 +195,10 @@ if (mysqli_connect_error()) {
                 <input type="text" name="nombre" placeholder="Nombre">
                 <input type="text" name="apellido1" placeholder="Primer apellido">
                 <input type="text" name="apellido2" placeholder="Segundo apellido">
-                <input type="text" name="password" placeholder="Contraseña">
+                <input type="password" name="password" placeholder="Contraseña">
+                <input type="password" name="passwordRepetida" placeholder="Vuelve a escribir la contraseña">
                 <input type="date" name="fecha_alta" placeholder="fecha actual" value="<?php echo date('Y-m-d') ?>" readonly>
-                <input type="submit" name="insertarUsuario" value="Añadir usuario">
+                <input type="submit" name="insertarUsuario" value="Añadir usuario" onclick="verificarPass()">
                 <?php if(isset($_POST['insertarUsuario'])) : ?>
                     <?php require('insertarUsuario.php') ?>
                 <?php endif; ?>
