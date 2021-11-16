@@ -2,7 +2,7 @@
     //Datos de conexión a BBDD
     $db_host = "127.0.0.1";
     $db_name = "tallerServidores";
-    $db_user = "admin";
+    $db_user = "Admin";
     $db_pass = "Admin123";
 
 

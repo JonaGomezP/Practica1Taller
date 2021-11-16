@@ -177,7 +177,7 @@ if (mysqli_connect_error()) {
     
         
     <div class="divFormulario">
-        <form action="#" method="POST" target="_self">
+        <form action="insertarUsuario.php" method="POST" target="_self">
             <input type="hidden" name="id_usuario" value="<?php echo $id_usu ?>">
             <input type="hidden" name="username" value="<?php echo $usu ?>">
             <input type="hidden" name="pass" value="<?php echo $pass ?>">
@@ -185,7 +185,6 @@ if (mysqli_connect_error()) {
             <input type="text" name="apellido1" placeholder="Primer apellido">
             <input type="text" name="apellido2" placeholder="Segundo apellido">
             <input type="text" name="password" placeholder="Contraseña">
-            <input type="date" name="fecha_alta" placeholder="Fecha de alta">
             <input type="submit" value="Añadir usuario">
         </form>
     </div>

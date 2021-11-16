@@ -11,14 +11,19 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $nombre = $_POST['nombre'];
     $apellido1 = $_POST['apellido1'];
     $apellido2 = $_POST['apellido2'];
-    $fecha_alta=$_POST['fecha_alta'];
+    print_r($usu);
+    print_r($nombre);
+    print_r($password);
+    print_r($apellido1);
+    print_r($apellido2);
+
 
     
     //Insertar vehículo nuevo
 
-    $insertarUsuario = "INSERT INTO datos_usuario (nombre,apellido1,apellido2,pass,fecha_alta) VALUES ('$nombre','$apellido1','$apellido2','$password','$fecha_alta')";
+    $insertarUsuario = "INSERT INTO datos_usuario (nombre,apellido1,apellido2,pass,fecha_alta) VALUES ('$nombre','$apellido1','$apellido2','$password',NOW())";
 
     $sql = mysqli_query($conn, $insertarUsuario);    
-    include("datosUsuario.php");
+    //include("datosUsuario.php");
     //header("Location: /Practica1Taller/ArchivosPHP/datosUsuario.php");
 }
