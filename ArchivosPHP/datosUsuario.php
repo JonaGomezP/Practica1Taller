@@ -188,22 +188,21 @@ if (mysqli_connect_error()) {
     <?php if ($res_admin == 1) : ?>
         <h2 style="color: white;font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;text-align:center; font-weight: normal">Nuevo usuario</h2>
         <div class="divFormulario">
-            <form action="datosUsuario.php" method="POST" target="_self">
-                <input type="hidden" name="id_usuario" value="<?php echo $id_usu ?>">
-                <input type="hidden" name="username" value="<?php echo $usu ?>">
-                <input type="hidden" name="pass" value="<?php echo $pass ?>">
-                <input type="text" name="nombre" placeholder="Nombre">
-                <input type="text" name="apellido1" placeholder="Primer apellido">
-                <input type="text" name="apellido2" placeholder="Segundo apellido">
-                <input type="password" name="password" placeholder="Contraseña">
-                <input type="password" name="passwordRepetida" placeholder="Vuelve a escribir la contraseña">
-                <input type="date" name="fecha_alta" placeholder="fecha actual" value="<?php echo date('Y-m-d') ?>" readonly>
-                <input type="submit" name="insertarUsuario" value="Añadir usuario" onclick="verificarPass()">
-                <?php if(isset($_POST['insertarUsuario'])) : ?>
+        <form action="datosUsuario.php" method="POST" target="_self">
+            <input type="hidden" name="id_usuario" value="<?php echo $id_usu ?>">
+            <input type="hidden" name="username" value="<?php echo $usu ?>">
+            <input type="hidden" name="pass" value="<?php echo $pass ?>">
+            <input type="text" name="nombre" placeholder="Nombre">
+            <input type="text" name="apellido1" placeholder="Primer apellido">
+            <input type="text" name="apellido2" placeholder="Segundo apellido">
+            <input type="password" name="password" placeholder="Contraseña">
+            <input type="date" placeholder="fecha actual" value="<?php echo date('Y-m-d') ?>" readonly>
+            <input type="submit" name="insertarUsuario" value="Añadir usuario">
+            <?php if(isset($_POST['insertarUsuario'])) : ?>
                     <?php require('insertarUsuario.php') ?>
-                <?php endif; ?>
-            </form>
-        </div>
+            <?php endif; ?>
+        </form>
+    </div>
     <?php endif; ?> 
 <?php endif; ?>
 
@@ -211,6 +210,7 @@ if (mysqli_connect_error()) {
     <?php require('../Comun/footer.php') ?>
 </footer>
 </body>
+
 
 
 </html>
