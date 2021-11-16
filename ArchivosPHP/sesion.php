@@ -1,8 +1,6 @@
 <?php 
     $ssql = "SELECT * FROM datos_usuario WHERE nombre='$usu' and pass='$pass'";
     $rs = mysqli_query($conn, $ssql);
-<<<<<<< HEAD
-=======
 
     if ($rs === false) {
         echo mysqli_error($conn);
@@ -25,7 +23,6 @@
         header("Location: login.php");
         }
     }   
->>>>>>> 487d3d14e91dfca77780b5310ebfa5fe5a7cda28
 
     if ($rs === false) {
         echo mysqli_error($conn);
