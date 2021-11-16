@@ -25,7 +25,11 @@ caption {
 }
 
 .divFormulario {
+<<<<<<< HEAD
     position: absolute;
+=======
+    position: relative;
+>>>>>>> 487d3d14e91dfca77780b5310ebfa5fe5a7cda28
     display: flex;
     align-items: center;
     justify-content: center;

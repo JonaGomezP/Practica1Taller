@@ -40,6 +40,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 $users = mysqli_fetch_all($resultadosUsuarios, MYSQLI_ASSOC);
             }
         }
+<<<<<<< HEAD
+=======
+
+>>>>>>> 487d3d14e91dfca77780b5310ebfa5fe5a7cda28
 }
 ?>
 
