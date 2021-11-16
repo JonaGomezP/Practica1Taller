@@ -14,6 +14,5 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $borrarUsuario = "DELETE from datos_usuario where id_usuario=$idUsu";
 
     $sql = mysqli_query($conn, $borrarUsuario);    
-    require("datosUsuario.php");
 }
 ?>
