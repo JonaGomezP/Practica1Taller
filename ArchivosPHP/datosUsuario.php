@@ -155,9 +155,9 @@ if (mysqli_connect_error()) {
                                 <td>
                                     <form action="datosUsuario.php" method="GET">
                                         <input type="" name="id_vehiculo" value="<?php echo $registro['id_vehiculo'] ?>">
-                                        <input style="width: 35px; height:35px;" name="papelera_usuario" type="image" src="../IMG/papelera.png" alt="Eliminar vehículo">
+                                        <input style="width: 35px; height:35px;" name="papelera_vehiculo" type="image" src="../IMG/papelera.png" alt="Eliminar vehículo">
                                     </form>
-                                    <?php if (isset($_GET['papelera_vehiculo'])) : ?>
+                                    <?php if (isset($_GET['papelera_vehiculo_x'])) : ?>
                                         <?php require('borrarVehiculo.php') ?>
                                     <?php endif; ?>
                                 </td>
