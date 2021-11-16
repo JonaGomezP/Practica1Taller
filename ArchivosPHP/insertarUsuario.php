@@ -13,6 +13,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $apellido1 = $_POST['apellido1'];
     $apellido2 = $_POST['apellido2'];
     
+    
 
     //Insertar vehículo nuevo
 
