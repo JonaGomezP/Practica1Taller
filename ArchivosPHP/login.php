@@ -18,15 +18,15 @@
             <input type="submit" value="ENTRAR" name="enviar">
         </form>
     </div>
-
+    <?php session_destroy(); ?>
     <?php
-    require "../HTML/header.html"
+    require "../Comun/header.php"
     ?>
     <?php
-    require "../HTML/fondoLogin.html"
+    require "../Comun/fondoLogin.php"
     ?>
     <?php
-    require "../HTML/footer.html"
+    require "../Comun/footer.php"
     ?>
 </body>
 

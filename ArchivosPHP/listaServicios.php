@@ -11,6 +11,7 @@ if (mysqli_connect_error()) {
         $matricula = $_POST['matricula'];
         //--------------------------------------------------------------------------
 
+        session_start();
 
         //--------------------------------------------------------------------------
         //Consulta de servicios (llama archivo consultaListaServicios.php)
@@ -37,14 +38,13 @@ if (mysqli_connect_error()) {
     <title>Lista de servicios</title>
     <link rel="stylesheet" href="../CSS/common.css">
     <link rel="stylesheet" href="../CSS/tablas.css">
-    <script src="../JS/tablas.js"></script>
 
 
 </head>
 
 <body>
     <header>
-        <?php require('../HTML/header.html'); ?>
+        <?php require('../Comun/header.php'); ?>
     </header>
 
     <!--Tabla que muestra la lista de servicios -->
@@ -67,7 +67,7 @@ if (mysqli_connect_error()) {
                             <td class="tdcolor"><?php echo $registro['servicio'] ?></td>
                             <input class="lista_ser" type="hidden" name="id_servicio" value="<?php echo $registro['id_servicio'] ?>" >
                             <td class="celda_boton">
-                                <button id="enviar_detalles" type="submit" value="Detalles" onmouseover="mostrarDetalles()" onmouseout="ocultarDetalles()">Consultar detalles</button>
+                                <input id="enviar_detalles" type="submit" value="Detalles" onmouseover="mostrarDetalles()" onmouseout="ocultarDetalles()">
                             </td>
                         </form>
                     </tr>
@@ -119,9 +119,10 @@ if (mysqli_connect_error()) {
     <?php endif; ?>
 
     <footer>
-        <?php require('../HTML/footer.html') ?>
+        <?php require('../Comun/footer.php') ?>
 
     </footer>
 </body>
 
 </html>
+<script src="../JS/tablas.js"></script>
