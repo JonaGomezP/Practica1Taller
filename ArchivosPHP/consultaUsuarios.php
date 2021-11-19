@@ -1,7 +1,7 @@
 <?php
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    require('conexion.php');
     
+        require('conexion.php');
         $sqladministradores = "SELECT administrador from datos_usuario where nombre = '$usu' AND pass = '$pass'";
         $resultadoAdministrador = mysqli_query($conn, $sqladministradores);
 
@@ -12,7 +12,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         }
 
         //Recuperar si es administrador o no (0 no, distinto de 0 sí)
-        if(isset($admin['0']['administrador'])){
+        if (isset($admin['0']['administrador'])) {
             $res_admin = $admin[0]['administrador'];
         }
 
@@ -40,8 +40,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 $users = mysqli_fetch_all($resultadosUsuarios, MYSQLI_ASSOC);
             }
         }
-
-}
-?>
-
+        return $users;
+    }
 
