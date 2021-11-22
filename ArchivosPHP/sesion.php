@@ -1,6 +1,6 @@
 <?php 
 comprobarSesion($usu,$pass);
-    function comprobarSesion($usu,$pass){
+function comprobarSesion($usu,$pass){
     require('Conexion.php');
     $ssql = "SELECT * FROM datos_usuario WHERE nombre='$usu' and pass='$pass'";
     $rs = mysqli_query($conn, $ssql);
@@ -28,3 +28,5 @@ comprobarSesion($usu,$pass);
     }   
     return $_SESSION;
 }
+
+
