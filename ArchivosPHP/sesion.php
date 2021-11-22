@@ -30,3 +30,16 @@ function comprobarSesion($usu,$pass){
 }
 
 
+function comprobarCorreo($correo){
+    $subcadena = substr($correo,-10);
+    if($subcadena == "@gmail.com"){
+        echo("es un correo");
+        return true;
+        
+    } else{
+        echo("no es un correo");
+        return false;
+    }
+}
+
+
