@@ -2,7 +2,7 @@
 require('C:\xampp\htdocs\Practica1Taller\ArchivosPHP\sesion.php');
 
 use PHPUnit\Framework\TestCase;
-//include("../../ArchivosPHP/sesion.php");
+include("../../ArchivosPHP/sesion.php");
 
 
 class testPrueba extends TestCase {
