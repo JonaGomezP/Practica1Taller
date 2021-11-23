@@ -10,6 +10,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     
     //Eliminar usuario 
+    //Eliminar vehículo 
 
     $borrarUsuario = "DELETE from datos_usuario where id_usuario=$idUsu";
 

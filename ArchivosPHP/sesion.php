@@ -1,7 +1,10 @@
 <?php 
+<<<<<<< HEAD
 comprobarSesion($usu,$pass);
 function comprobarSesion($usu,$pass){
     require('Conexion.php');
+=======
+>>>>>>> main
     $ssql = "SELECT * FROM datos_usuario WHERE nombre='$usu' and pass='$pass'";
     $rs = mysqli_query($conn, $ssql);
 

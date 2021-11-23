@@ -11,7 +11,6 @@
             font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
             font-size: 62, 5%;
         }
-
         .claseheader {
             background: rgba(0, 0, 0, 0.2);
             background: -moz-linear-gradient(90deg, rgba(0, 0, 0, 1) 0%, rgba(85, 4, 4, 1) 34%, rgba(168, 1, 1, 1) 47%, rgba(178, 1, 1, 1) 64%, rgba(244, 4, 4, 1) 71%, rgba(255, 255, 255, 1) 82%, rgba(255, 255, 255, 1) 96%);
@@ -22,7 +21,7 @@
             margin: 0;
             margin-top: 0.5rem;
         }
-
+        
         header {
             width: 99%;
             background: url("../IMG/coche.png")no-repeat;
@@ -30,7 +29,6 @@
             height: 13, 7rem;
             background-position-x: right;
         }
-
         .textoheader {
             font-size: 6rem;
             text-align: center;

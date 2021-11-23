@@ -10,6 +10,7 @@ if (mysqli_connect_error()) {
         $usu = $_POST['username'];
         $pass = $_POST['pass'];
 
+        require('sesion.php');
 
         require('sesion.php');
 
