@@ -29,7 +29,6 @@
             height: 13, 7rem;
             background-position-x: right;
         }
-        
         .textoheader {
             font-size: 6rem;
             text-align: center;
@@ -37,7 +36,8 @@
             text-decoration: cursive;
             box-shadow: 10px 10px 10px 10px black;
         }
-        #inicioSesion{
+
+        #inicioSesion {
             display: flex;
             position: absolute;
             right: 0;
@@ -49,7 +49,7 @@
             font-size: 16px;
         }
 
-        p img{
+        p img {
             width: 35px;
             height: 35px;
             object-fit: cover;
@@ -61,8 +61,10 @@
     <div class="claseheader">
         <header class="textoheader"><em>Parrapu Motor</em></header>
     </div>
-    <p id="inicioSesion"><img src="../IMG/user.png" alt="<?php echo($_SESSION['nombre'])?>"><?php echo($_SESSION['nombre'])?></p>
-
+    
+    <?php if (isset($_SESSION["nombre"])) : ?>
+        <p id="inicioSesion"><img src="../IMG/user.png" alt="<?php echo ($_SESSION['nombre']) ?>"><?php echo ($_SESSION['nombre']) ?></p>
+    <?php endif; ?>
 </body>
 
 </html>

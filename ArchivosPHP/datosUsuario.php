@@ -12,6 +12,7 @@ if (mysqli_connect_error()) {
 
         require('sesion.php');
 
+        require('sesion.php');
 
 
 
@@ -51,7 +52,7 @@ if (mysqli_connect_error()) {
     </header>
 
 
-    <?php if ($_SESSION == true) : ?>
+    <?php if (isset($_SESSION["nombre"])) : ?>
 
 
         <!--Consulta de usuarios (llama archivo consultaUsuarios.php), comprobar si es administrador y si el login es correcto (devuelve valores) iniciamos una sesión. -->
@@ -153,11 +154,13 @@ if (mysqli_connect_error()) {
                                     </form>
                                 </td>
                                 <td>
-                                    <form action="datosUsuario.php" method="GET">
-                                        <input type="" name="id_vehiculo" value="<?php echo $registro['id_vehiculo'] ?>">
-                                        <input style="width: 35px; height:35px;" name="papelera_usuario" type="image" src="../IMG/papelera.png" alt="Eliminar vehículo">
+                                    <form action="datosUsuario.php" method="POST">
+                                        <input type="hidden" name="username" value="<?php echo $usu ?>">
+                                        <input type="hidden" name="pass" value="<?php echo $pass ?>">
+                                        <input type="hidden" name="id_vehiculo" value="<?php echo $registro['id_vehiculo'] ?>">
+                                        <input style="width: 35px; height:35px;" type="image" src="../IMG/papelera.png" alt="Eliminar vehículo" name="papelera_vehiculo">
                                     </form>
-                                    <?php if (isset($_GET['papelera_vehiculo'])) : ?>
+                                    <?php if (isset($_POST['papelera_vehiculo_x'])) : ?>
                                         <?php require('borrarVehiculo.php') ?>
                                     <?php endif; ?>
                                 </td>
@@ -186,8 +189,8 @@ if (mysqli_connect_error()) {
                         <input type="submit" name="insertarVehiculo" value="guardar">
                     </form>
                     <?php if (isset($_POST['insertarVehiculo'])) : ?>
-                            <?php require('insertarVehiculo.php') ?>
-                        <?php endif; ?>
+                        <?php require('insertarVehiculos.php') ?>
+                    <?php endif; ?>
                 </div>
             <?php endif; ?>
 

@@ -1,4 +1,10 @@
 <?php 
+<<<<<<< HEAD
+comprobarSesion($usu,$pass);
+function comprobarSesion($usu,$pass){
+    require('Conexion.php');
+=======
+>>>>>>> main
     $ssql = "SELECT * FROM datos_usuario WHERE nombre='$usu' and pass='$pass'";
     $rs = mysqli_query($conn, $ssql);
 
@@ -23,5 +29,20 @@
         header("Location: login.php");
         }
     }   
+    return $_SESSION;
+}
 
-?>
+
+function comprobarCorreo($correo){
+    $subcadena = substr($correo,-10);
+    if($subcadena == "@gmail.com"){
+        echo("es un correo");
+        return true;
+        
+    } else{
+        echo("no es un correo");
+        return false;
+    }
+}
+
+
